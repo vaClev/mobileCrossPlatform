@@ -1,0 +1,21 @@
+# Сборочные папки
+build/
+build-*/
+
+# Qt Creator
+*.pro.user
+*.qmlc
+.qmake.stash
+CMakeLists.txt.user
+
+# macOS
+.DS_Store
+
+# Android
+*.apk
+*.aab
+local.properties
+
+# IDE
+.idea/
+.vscode/
