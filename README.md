@@ -5,8 +5,13 @@
 ## Сборка
 
 ### Android (Windows)
-Qt установлен локально через Online installer.  qt/6.8.3  + Android + дополнительно установлен Android NDK 26.1.10909125
+*Qt установлен локально через Online installer. 
+*qt/6.8.3 MINGW 64bit  + Android
+*дополнительно установлен Android NDK 26.1.10909125
+*развернут эмулятор Android Pixel_7a API 36.1
+```
 Открыть проект в Qt Creator → выбрать Android-кит → Собрать
+```
 
 ### iOS (macOS)
 ```bash
@@ -14,7 +19,7 @@ Qt установлен локально через Online installer.  qt/6.8.3 
 brew install cmake conan
 
 # Клонирование репозитория
-git clone <URL>
+git clone https://github.com/vaClev/mobileCrossPlatform.git
 cd lesson0
 
 # Сборка через Conan
