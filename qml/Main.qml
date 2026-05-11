@@ -1,12 +1,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.Material
 
 ApplicationWindow {
-    width: 400
-    height: 800
     visible: true
-    title: "User profile"
+    title: qsTr("User profile")
+    minimumWidth: 320 // Минимальная ширина современных экранов телефонов
+    minimumHeight: 480 // Комфортная высота с запасом. Если что прокрутят.
 
     // Единый тёмный стиль для всех платформ
     Material.theme: Material.Dark
@@ -14,7 +15,10 @@ ApplicationWindow {
 
     Page {
         anchors.fill: parent
-        anchors.margins: 20
+        //anchors.margins: 20 // как вариант в пикселях
+        // Внутренние отступы в процентах от размеров окна
+        anchors.margins: Math.min(parent.width,
+                                  parent.height) * 0.03 // 3% от меньшей стороны
 
         ColumnLayout {
             anchors.fill: parent
@@ -22,7 +26,7 @@ ApplicationWindow {
 
             //заголовок
             Label {
-                text: "Заполните профиль"
+                text: qsTr("Fill profile")
                 font.pixelSize: 22
                 font.bold: true
                 Layout.alignment: Qt.AlignCenter
@@ -31,12 +35,12 @@ ApplicationWindow {
             // Поле ввода имени
             RowLayout {
                 Label {
-                    text: "имя:"
+                    text: qsTr("Name:")
                     Layout.preferredWidth: 80
                 }
                 TextField {
                     id: nameField
-                    placeholderText: "Введите имя"
+                    placeholderText: qsTr("Enter your name")
                     Layout.fillWidth: true
                 }
             }
@@ -44,7 +48,7 @@ ApplicationWindow {
             // Выбор возраста
             RowLayout {
                 Label {
-                    text: "Возраст:"
+                    text: qsTr("Age:")
                     Layout.preferredWidth: 80
                 }
                 SpinBox {
@@ -58,7 +62,7 @@ ApplicationWindow {
             // Получать уведомления
             RowLayout {
                 Label {
-                    text: "Уведомления:"
+                    text: qsTr("Notification:")
                     Layout.preferredWidth: 80
                 }
                 Switch {
@@ -69,25 +73,31 @@ ApplicationWindow {
 
             //Уровень опыта
             GroupBox {
-                title: "Уровень опыта"
+                title: qsTr("Expirience:")
                 Layout.fillWidth: true
+                Layout.minimumWidth: 300
                 RowLayout {
+                    anchors.fill: parent
                     RadioButton {
-                        text: "начинающий"
+                        text: qsTr("Beginer")
                         checked: true
+                        Layout.fillWidth: true
                     }
                     RadioButton {
-                        text: "Middle"
+                        text: qsTr("Middle")
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignHCenter
                     }
                     RadioButton {
-                        text: "Senior"
+                        text: qsTr("Senior")
+                        Layout.fillWidth: true
                     }
                 }
             }
 
             //Кнопка сохранения
             Button {
-                text: "Сохранить профиль"
+                text: qsTr("Save profile")
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 10
                 onClicked: {
@@ -102,6 +112,22 @@ ApplicationWindow {
             // Растягивающийся элемент, чтобы всё не прилипало к верху
             Item {
                 Layout.fillHeight: true
+            }
+
+            /// Переключатель языка
+            Row {
+                Layout.alignment: Qt.AlignHCenter
+                spacing: 10
+                Button {
+                    text: "RU"
+                    highlighted: languageManager.currentLanguage === "ru"
+                    onClicked: languageManager.setLanguage("ru")
+                }
+                Button {
+                    text: "EN"
+                    highlighted: languageManager.currentLanguage === "en"
+                    onClicked: languageManager.setLanguage("en")
+                }
             }
         }
     }
