@@ -10,7 +10,7 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 # Главный исполняемый файл + ресурсы
 qt_add_executable(applesson0
-    main.cpp
+    Source/main.cpp
 )
 
 # QML-модуль
@@ -18,24 +18,24 @@ qt_add_qml_module(applesson0
     URI lesson0
     VERSION 1.0
     QML_FILES qml/Main.qml
-    SOURCES languagemanager.h languagemanager.cpp
+    SOURCES Source/languagemanager.h Source/languagemanager.cpp
 )
 
 # ===================================================================
 # Генерация .qm файла – ТОЛЬКО при сборке на Windows (Desktop)
 # ===================================================================
-if(CMAKE_SYSTEM_NAME STREQUAL Windows)
-    # ВНИМАНИЕ: lupdate/lrelease берутся из десктопного Qt (хост-инструменты)
-    # Мы используем find_package(linguisttools) – они уже доступны.
-    qt_add_translations(applesson0
-        TS_FILES
-            i18n/applesson0_en.ts
-            i18n/applesson0_ru.ts
-        QM_FILES_OUTPUT_DIRECTORY
-            ${CMAKE_CURRENT_SOURCE_DIR}   # .qm будут складываться прямо в корень проекта
-    )
-    # Результат: после сборки в корне появится (обновится) applesson0_ru.qm
-endif()
+#if(CMAKE_SYSTEM_NAME STREQUAL Windows)
+   # ВНИМАНИЕ: lupdate/lrelease берутся из десктопного Qt (хост-инструменты)
+   # Мы используем find_package(linguisttools) – они уже доступны.
+#    qt_add_translations(applesson0
+#        TS_FILES
+#            i18n/applesson0_en.ts
+#            i18n/applesson0_ru.ts
+#        QM_FILES_OUTPUT_DIRECTORY
+#            ${CMAKE_CURRENT_SOURCE_DIR}   # .qm будут складываться прямо в корень проекта
+#    )
+   # Результат: после сборки в корне появится (обновится) applesson0_ru.qm
+#endif()
 
 # ===================================================================
 # Добавление готового .qm файла в ресурсы (для всех платформ)
