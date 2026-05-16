@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include "languagemanager.h"
+#include "View/appcontext.h"
+#include "View/navigationmanager.h"
 
 #include<QDirIterator>
 int main(int argc, char *argv[])
@@ -18,23 +20,22 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    // Устанавливаем контекстное свойство до загрузки QML
+    // Устанавливаем контекстное свойство язык до загрузки QML
     engine.rootContext()->setContextProperty("languageManager", &langManager);
+
+    // Создаем и регистрируем контекст
+    AppContext appContext;
+    engine.rootContext()->setContextProperty("AppContext", &appContext);
+
+    // Создаем менеджер навигации
+    NavigationManager navManager;
+    engine.rootContext()->setContextProperty("NavManager", &navManager);
 
     // Загружаем QML через модуль (предполагается, что Main.qml зарегистрирован в qt_add_qml_module)
     engine.loadFromModule("lesson0", "Main");
 
     if (engine.rootObjects().isEmpty())
         return -1;
-
-    QDirIterator it(":", QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        if(it.fileName().contains("i18n"))
-            qDebug() << it.next();
-
-        else
-            it.next();
-    }
 
     return app.exec();
 }

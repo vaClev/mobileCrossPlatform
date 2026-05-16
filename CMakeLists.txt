@@ -17,8 +17,18 @@ qt_add_executable(applesson0
 qt_add_qml_module(applesson0
     URI lesson0
     VERSION 1.0
-    QML_FILES qml/Main.qml
-    SOURCES Source/languagemanager.h Source/languagemanager.cpp
+    QML_FILES
+        qml/Main.qml
+        qml/HomeScreen.qml
+        qml/LoginScreen.qml
+        qml/Profile.qml
+    SOURCES
+      Source/languagemanager.h
+      Source/languagemanager.cpp
+      Source/View/appcontext.h
+      Source/View/appcontext.cpp
+      Source/View/navigationmanager.h
+      Source/View/navigationmanager.cpp
 )
 
 # ===================================================================
