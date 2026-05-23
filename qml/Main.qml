@@ -22,6 +22,10 @@ ApplicationWindow {
         id: homeScreen
         HomeScreen {}
     }
+    Component {
+        id: profileEditScreen
+        ProfileEditScreen {}
+    }
 
     // Обработка сигналов от NavigationManager
     Connections {
@@ -31,10 +35,9 @@ ApplicationWindow {
             if (screenId === "home") {
                 // Заменяем весь стек, чтобы нельзя было вернуться на логин
                 mainStackView.replace(homeScreen)
-            } else if (screenId === "profile") {
+            } else if (screenId === "profileEdit") {
 
-                //TODO реализовать переходы
-                // и другие странички
+                mainStackView.push(profileEditScreen) // ← кладём поверх стека
             }
         }
 

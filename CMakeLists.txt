@@ -21,7 +21,11 @@ qt_add_qml_module(applesson0
         qml/Main.qml
         qml/HomeScreen.qml
         qml/LoginScreen.qml
-        qml/Profile.qml
+        qml/ProfileEditScreen.qml
+        qml/tabsContent/MainContent.qml
+        qml/tabsContent/Profile.qml
+        qml/tabsContent/NewsScreen.qml
+
     SOURCES
       Source/languagemanager.h
       Source/languagemanager.cpp

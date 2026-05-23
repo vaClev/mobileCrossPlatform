@@ -12,12 +12,18 @@ Page {
             id: swipeView
             Layout.fillWidth: true
             Layout.fillHeight: true
-            currentIndex: tabBar.currentIndex
-            interactive: true // Включаем возможность листать свайпами
+            currentIndex: tabBar.currentIndex //биндится с tabBar по индексу контента
 
-            //MainContent {}
-            //Profile {}
-            //NewsScreen {}
+            interactive: true // Включаем возможность листать свайпами
+            // callback при свайпе обновляем TabBar
+            onCurrentIndexChanged: {
+                if (tabBar.currentIndex != currentIndex)
+                    tabBar.currentIndex = currentIndex
+            }
+
+            MainContent {}
+            Profile {}
+            NewsScreen {}
         }
 
         TabBar {
