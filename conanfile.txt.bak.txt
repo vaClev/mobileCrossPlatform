@@ -1,0 +1,11 @@
+[requires]
+qt/6.8.3
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+qt/*:with_sql_psql=False
+qt/*:opengl=no
+qt/*:with_multimedia=True

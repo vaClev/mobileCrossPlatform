@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QTranslator>
+#include <QQmlContext>
+#include <QQmlComponent>
+#include <QDebug>
 #include "languagemanager.h"
 #include "View/appcontext.h"
 #include "View/navigationmanager.h"
@@ -33,7 +36,7 @@ int main(int argc, char *argv[])
 
     // Загружаем QML через модуль (предполагается, что Main.qml зарегистрирован в qt_add_qml_module)
     engine.loadFromModule("lesson0", "Main");
-
+  
     if (engine.rootObjects().isEmpty())
         return -1;
 

@@ -1,0 +1,4 @@
+module lesson0.tabsContent
+MainContent 1.0 MainContent.qml
+Profile 1.0 Profile.qml
+NewsScreen 1.0 NewsScreen.qml

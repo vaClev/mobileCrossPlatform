@@ -3,70 +3,48 @@ cmake_minimum_required(VERSION 3.16)
 project(lesson0 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Multimedia LinguistTools Core)
+find_package(Qt6 REQUIRED COMPONENTS Quick Multimedia Core)
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0004 NEW)
 
-qt_standard_project_setup(REQUIRES 6.8)
+# Явно укажем идентификатор бандла для macOS
+set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.lesson0")
+set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.yourcompany.lesson0")
 
-# Главный исполняемый файл + ресурсы
+# Главный исполняемый файл
 qt_add_executable(applesson0
     Source/main.cpp
+    translations.qrc
 )
 
-# QML-модуль
+
+# QML-модуль с перечислением всех файлов
 qt_add_qml_module(applesson0
     URI lesson0
     VERSION 1.0
     QML_FILES
         qml/Main.qml
-        qml/HomeScreen.qml
         qml/LoginScreen.qml
+        qml/HomeScreen.qml
         qml/ProfileEditScreen.qml
         qml/tabsContent/MainContent.qml
         qml/tabsContent/Profile.qml
         qml/tabsContent/NewsScreen.qml
-
+    RESOURCES
+        qml/qmldir
+	    qml/tabsContent/qmldir
     SOURCES
-      Source/languagemanager.h
-      Source/languagemanager.cpp
-      Source/View/appcontext.h
-      Source/View/appcontext.cpp
-      Source/View/navigationmanager.h
-      Source/View/navigationmanager.cpp
+        Source/languagemanager.h
+        Source/languagemanager.cpp
+        Source/View/appcontext.h
+        Source/View/appcontext.cpp
+        Source/View/navigationmanager.h
+        Source/View/navigationmanager.cpp
 )
 
-# ===================================================================
-# Генерация .qm файла – ТОЛЬКО при сборке на Windows (Desktop)
-# ===================================================================
-#if(CMAKE_SYSTEM_NAME STREQUAL Windows)
-   # ВНИМАНИЕ: lupdate/lrelease берутся из десктопного Qt (хост-инструменты)
-   # Мы используем find_package(linguisttools) – они уже доступны.
-#    qt_add_translations(applesson0
-#        TS_FILES
-#            i18n/applesson0_en.ts
-#            i18n/applesson0_ru.ts
-#        QM_FILES_OUTPUT_DIRECTORY
-#            ${CMAKE_CURRENT_SOURCE_DIR}   # .qm будут складываться прямо в корень проекта
-#    )
-   # Результат: после сборки в корне появится (обновится) applesson0_ru.qm
-#endif()
-
-# ===================================================================
-# Добавление готового .qm файла в ресурсы (для всех платформ)
-# ===================================================================
-# Файл applesson0_ru.qm должен существовать в корне проекта НА МОМЕНТ СБОРКИ.
-# Поэтому перед Android-сборкой обязательно один раз соберите проект на Windows,
-# или просто положите файл вручную, если он ещё не создан.
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/applesson0_ru.qm)
-    qt_add_resources(applesson0 "translations"
-        PREFIX "/i18n"
-        FILES applesson0_ru.qm
-    )
-else()
-    message(WARNING "applesson0_ru.qm not found. Run a Desktop build first or generate it manually.")
-endif()
-
-# Свойства цели (для iOS/macOS/Windows)
+# Свойства цели
 set_target_properties(applesson0 PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -80,6 +58,9 @@ target_link_libraries(applesson0
     PRIVATE Qt6::Multimedia
     PRIVATE Qt6::Core
 )
+
+# Исправление ошибки AGL на macOS
+target_link_options(applesson0 PRIVATE -weak_framework AGL)
 
 include(GNUInstallDirs)
 install(TARGETS applesson0

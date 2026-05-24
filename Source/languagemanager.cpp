@@ -19,7 +19,7 @@ QString LanguageManager::currentLanguage() const
 
 Q_INVOKABLE void LanguageManager::setLanguage(const QString &language)
 {
-    QFile file(":/i18n/applesson0_ru.qm");
+    QFile file(":/applesson0_ru.qm");
     qDebug() << "File exists in resources:" << file.exists();
 
     if(m_currentLanguage == language)
@@ -31,7 +31,7 @@ Q_INVOKABLE void LanguageManager::setLanguage(const QString &language)
     ///Пробуем загрузить перевод для выбранного языка
     if(language== QStringLiteral("ru"))
     {
-        if(m_translator->load(QStringLiteral(":/i18n/applesson0_ru.qm")))
+        if(m_translator->load(QStringLiteral(":/applesson0_ru.qm")))
         {
             qApp->installTranslator(m_translator);
             changeCurrentLanguage(language);

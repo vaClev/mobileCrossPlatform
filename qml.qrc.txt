@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/qt/qml/lesson0">
+        <file alias="Main.qml">qml/Main.qml</file>
+        <file alias="LoginScreen.qml">qml/LoginScreen.qml</file>
+        <file alias="HomeScreen.qml">qml/HomeScreen.qml</file>
+        <file alias="ProfileEditScreen.qml">qml/ProfileEditScreen.qml</file>
+    </qresource>
+    <qresource prefix="/qt/qml/lesson0/tabsContent">
+        <file alias="MainContent.qml">qml/tabsContent/MainContent.qml</file>
+        <file alias="Profile.qml">qml/tabsContent/Profile.qml</file>
+        <file alias="NewsScreen.qml">qml/tabsContent/NewsScreen.qml</file>
+    </qresource>
+</RCC>
