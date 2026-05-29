@@ -4,9 +4,14 @@ project(lesson0 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Multimedia LinguistTools Core)
+find_package(Qt6 REQUIRED COMPONENTS Quick Multimedia LinguistTools Core Network)
+set(CMAKE_AUTOMOC ON)
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0004 NEW)
 
-qt_standard_project_setup(REQUIRES 6.8)
+# Явно укажем идентификатор бандла для macOS
+set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.lesson0")
+set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.yourcompany.lesson0")
 
 # Главный исполняемый файл + ресурсы
 qt_add_executable(applesson0
@@ -25,7 +30,9 @@ qt_add_qml_module(applesson0
         qml/tabsContent/MainContent.qml
         qml/tabsContent/Profile.qml
         qml/tabsContent/NewsScreen.qml
-
+    RESOURCES
+        qml/qmldir
+        qml/tabsContent/qmldir
     SOURCES
       Source/languagemanager.h
       Source/languagemanager.cpp
@@ -33,6 +40,8 @@ qt_add_qml_module(applesson0
       Source/View/appcontext.cpp
       Source/View/navigationmanager.h
       Source/View/navigationmanager.cpp
+      Source/Services/deepseekclient.h
+      Source/Services/deepseekclient.cpp
 )
 
 # ===================================================================
@@ -79,7 +88,13 @@ target_link_libraries(applesson0
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Multimedia
     PRIVATE Qt6::Core
+    PRIVATE Qt6::Network
 )
+
+# Для macOS – слабая линковка AGL (не особо помогает)
+if(APPLE)
+    target_link_options(applesson0 PRIVATE -weak_framework AGL)
+endif()
 
 include(GNUInstallDirs)
 install(TARGETS applesson0

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import lesson0
 
 ApplicationWindow {
     id: appWindow
