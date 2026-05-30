@@ -1,0 +1,52 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 21,
+                        "durationMicroseconds": 125,
+                        "errorMessage": "",
+                        "functionName": "theme",
+                        "line": 9
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 22,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "accent",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 27,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 13
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 54,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 18
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 24,
+                        "durationMicroseconds": 204,
+                        "errorMessage": "Cannot access value for name NavManager",
+                        "functionName": "onClicked",
+                        "line": 23
+                    }
+                ],
+                "filepath": "/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/Profile.qml"
+            }
+        ],
+        "moduleId": "lesson0(applesson0)"
+    }
+]

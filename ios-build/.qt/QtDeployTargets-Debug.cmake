@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_applesson0_FILE /Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/Debug${EFFECTIVE_PLATFORM_NAME}/applesson0.app/applesson0)
+set(__QT_DEPLOY_TARGET_applesson0_TYPE EXECUTABLE)

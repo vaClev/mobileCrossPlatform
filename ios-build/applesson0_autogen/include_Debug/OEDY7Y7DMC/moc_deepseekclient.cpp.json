@@ -1,0 +1,32 @@
+{
+    "classes": [
+        {
+            "className": "DeepSeekClient",
+            "lineNumber": 9,
+            "object": true,
+            "qualifiedClassName": "DeepSeekClient",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "responseText",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "DeepSeekResponsed",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "deepseekclient.h",
+    "outputRevision": 68
+}

@@ -1,0 +1,13 @@
+2026-05-30 22:30:49,466 - aqt.main - INFO - installer 8411422336 aqtinstall(aqt) v3.3.0 on Python 3.14.5 [CPython Clang 21.0.0 (clang-2100.0.123.102)]
+2026-05-30 22:30:49,466 - aqt.main - INFO - installer 8411422336 Found installed mac-desktop Qt at /Users/aleksandravasileva/Qt/6.8.3/macos
+2026-05-30 22:30:49,467 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/ios/qt6_683/qt6_683/Updates.xml.sha256
+2026-05-30 22:30:51,633 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtwebengine/683/ios/Updates.xml.sha256
+2026-05-30 22:30:52,552 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtwebengine/683/ios/Updates.xml.sha256
+2026-05-30 22:30:53,396 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtwebengine/683/ios/Updates.xml.sha256
+2026-05-30 22:30:54,151 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtwebengine/683/ios/Updates.xml.sha256
+2026-05-30 22:30:54,939 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtwebengine/683/ios/Updates.xml.sha256
+2026-05-30 22:30:55,697 - aqt.helper - DEBUG - helper 8411422336 Attempt to download checksum at https://download.qt.io/online/qtsdkrepository/mac_x64/extensions/qtpdf/683/ios/Updates.xml.sha256
+2026-05-30 22:30:57,392 - aqt.archives - INFO - archives 8411422336 Found extension qtpdf
+2026-05-30 22:30:57,397 - aqt.main - ERROR - installer 8411422336 The packages ['ffmpeg'] were not found while parsing XML of package information!
+==============================Suggested follow-up:==============================
+* Please use 'aqt list-qt mac ios --modules 6.8.3 <arch>' to show modules available.

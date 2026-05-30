@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 27,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"centerIn\".",
+                        "functionName": "centerIn",
+                        "line": 8
+                    }
+                ],
+                "filepath": "/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/MainContent.qml"
+            }
+        ],
+        "moduleId": "lesson0(applesson0)"
+    }
+]

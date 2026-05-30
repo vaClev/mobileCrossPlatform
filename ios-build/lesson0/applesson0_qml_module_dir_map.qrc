@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/qt/qml/lesson0">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/lesson0</file>
+
+  </qresource>
+</RCC>

@@ -1,0 +1,15 @@
+--resource
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/.qt/rcc/qmake_lesson0.qrc
+--resource
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/.qt/rcc/applesson0_raw_qml_0.qrc
+--resource
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/.qt/rcc/applesson0_raw_qml_0_extra_qmldirs.qrc
+--resource
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/.qt/rcc/translations.qrc
+/qt/qml/lesson0/qml/Main.qml
+/qt/qml/lesson0/qml/HomeScreen.qml
+/qt/qml/lesson0/qml/LoginScreen.qml
+/qt/qml/lesson0/qml/ProfileEditScreen.qml
+/qt/qml/lesson0/qml/tabsContent/MainContent.qml
+/qt/qml/lesson0/qml/tabsContent/Profile.qml
+/qt/qml/lesson0/qml/tabsContent/NewsScreen.qml

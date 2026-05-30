@@ -3,11 +3,18 @@ cmake_minimum_required(VERSION 3.16)
 project(lesson0 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(Qt6 REQUIRED COMPONENTS Quick Multimedia LinguistTools Core Network)
 set(CMAKE_AUTOMOC ON)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core LinguistTools Network)
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
+
+#настройки для iOS
+if(IOS)
+    set(CMAKE_OSX_SYSROOT iphoneos)
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
+    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
+    set(CMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER "")
+endif()
 
 # Явно укажем идентификатор бандла для macOS
 set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.lesson0")
@@ -85,14 +92,13 @@ set_target_properties(applesson0 PROPERTIES
 
 # Линковка
 target_link_libraries(applesson0
-    PRIVATE Qt6::Quick
-    PRIVATE Qt6::Multimedia
     PRIVATE Qt6::Core
+    PRIVATE Qt6::Quick
     PRIVATE Qt6::Network
 )
 
 # Для macOS – слабая линковка AGL (не особо помогает)
-if(APPLE)
+if(APPLE AND NOT IOS)
     target_link_options(applesson0 PRIVATE -weak_framework AGL)
 endif()
 

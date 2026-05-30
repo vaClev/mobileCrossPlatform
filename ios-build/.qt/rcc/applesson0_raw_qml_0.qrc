@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="/qt/qml/lesson0/">
+    <file alias="qml/Main.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/Main.qml</file>
+    <file alias="qml/HomeScreen.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/HomeScreen.qml</file>
+    <file alias="qml/LoginScreen.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/LoginScreen.qml</file>
+    <file alias="qml/ProfileEditScreen.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/ProfileEditScreen.qml</file>
+    <file alias="qml/tabsContent/MainContent.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/MainContent.qml</file>
+    <file alias="qml/tabsContent/Profile.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/Profile.qml</file>
+    <file alias="qml/tabsContent/NewsScreen.qml">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/NewsScreen.qml</file>
+    <file alias="qml/qmldir">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/qmldir</file>
+    <file alias="qml/tabsContent/qmldir">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/qml/tabsContent/qmldir</file>
+  </qresource>
+</RCC>
+

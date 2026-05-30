@@ -1,0 +1,4 @@
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/applesson0_autogen/include_Debug/CMBD5TGTP4/moc_languagemanager.cpp.json
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/applesson0_autogen/include_Debug/GLDGMC55FL/moc_appcontext.cpp.json
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/applesson0_autogen/include_Debug/GLDGMC55FL/moc_navigationmanager.cpp.json
+/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/applesson0_autogen/include_Debug/OEDY7Y7DMC/moc_deepseekclient.cpp.json

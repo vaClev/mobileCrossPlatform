@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/lesson0/">
+    <file alias="qml/qmldir">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/lesson0/qml/qmldir</file>
+    <file alias="qml/tabsContent/qmldir">/Users/aleksandravasileva/Desktop/Oleg/mobileCrossPlatform/ios-build/lesson0/qml/tabsContent/qmldir</file>
+  </qresource>
+</RCC>
+
