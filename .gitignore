@@ -1,6 +1,7 @@
 # Сборочные папки
 build/
 build-*/
+ios-build/
 
 # Qt Creator
 *.pro.user
