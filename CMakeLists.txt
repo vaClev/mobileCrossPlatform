@@ -34,12 +34,16 @@ qt_add_qml_module(applesson0
         qml/HomeScreen.qml
         qml/LoginScreen.qml
         qml/ProfileEditScreen.qml
+        # контент внутри SwipeView Tab'ов главной страницы
         qml/tabsContent/MainContent.qml
         qml/tabsContent/Profile.qml
         qml/tabsContent/NewsScreen.qml
+        # Компоненты для повторного использования
+        qml/components/PageWithBackButton.qml
     RESOURCES
         qml/qmldir
         qml/tabsContent/qmldir
+        qml/components/qmldir
     SOURCES
       Source/languagemanager.h
       Source/languagemanager.cpp

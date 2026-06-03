@@ -11,25 +11,25 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    LanguageManager langManager(&engine);
+    LanguageManager * langManager = new LanguageManager(&engine, &app);
     // Установить язык на основе системной локали
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
         if (locale.startsWith(QStringLiteral("ru"))) {
-            langManager.setLanguage(QStringLiteral("ru"));
+            langManager->setLanguage(QStringLiteral("ru"));
             break;
         }
     }
     // Устанавливаем контекстное свойство язык до загрузки QML
-    engine.rootContext()->setContextProperty("languageManager", &langManager);
+    engine.rootContext()->setContextProperty("languageManager", langManager);
 
     // Создаем и регистрируем контекст
-    AppContext appContext;
-    engine.rootContext()->setContextProperty("AppContext", &appContext);
+    AppContext * appContext = new AppContext(&app);
+    engine.rootContext()->setContextProperty("AppContext", appContext);
 
     // Создаем менеджер навигации
-    NavigationManager navManager;
-    engine.rootContext()->setContextProperty("NavManager", &navManager);
+    NavigationManager * navManager = new NavigationManager(&app);
+    engine.rootContext()->setContextProperty("NavManager", navManager);
 
     // Загружаем QML через модуль (предполагается, что Main.qml зарегистрирован в qt_add_qml_module)
     engine.loadFromModule("lesson0", "Main");
@@ -37,5 +37,8 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
-    return app.exec();
+    int ret = app.exec();
+    engine.clearComponentCache();
+    app.processEvents();
+    return ret;
 }
