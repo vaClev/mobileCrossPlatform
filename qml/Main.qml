@@ -7,24 +7,36 @@ ApplicationWindow {
     visible: true
     title: "Mobile App"
 
+    ///////////////////////////////////////////
     // Корневой фокусируемый контейнер для перехвата событий нажатия на кнопки на корпусе телефона
     Item {
         anchors.fill: parent
         focus: true
 
+        ///////////////////////////////////////////
+        // Единый тёмный стиль для всех
+        Material.theme: Material.Dark
+        Material.accent: Material.Orange
+
+        ///////////////////////////////////////////
+        // Обработчик нажатия кнопки "назад" - Android: на ios просто не сработает
         Keys.onBackPressed: {
             console.log("Back pressed!")
-            // Здесь вызываем вашу логику: NavManager.goBack()
+            NavManager.goBack()
             // Событие не дойдёт до системы, приложение не закроется
         }
 
-        // Все ваши остальные элементы (StackView, кнопка и т.д.) помещаются сюда
+        ///////////////////////////////////////////
+        // Главный StackView приложения
         StackView {
             id: mainStackView
             anchors.fill: parent
             initialItem: loginScreen // Начинаем с экрана входа
         }
 
+        ///////////////////////////////////////////
+        // Все компоненты входящие в StackView описываются ниже
+        // для них подключен модуль "import lesson0"
         Component {
             id: loginScreen
             LoginScreen {}
@@ -37,43 +49,47 @@ ApplicationWindow {
             id: profileEditScreen
             ProfileEditScreen {}
         }
+    }
 
-        // Обработка сигналов от NavigationManager
-        Connections {
-            target: NavManager
+    ///////////////////////////////////////////
+    // Обработка сигналов от NavigationManager
+    Connections {
+        target: NavManager
 
-            function onNavigationRequested(screenId) {
-                if (screenId === "home") {
-                    // Заменяем весь стек, чтобы нельзя было вернуться на логин
-                    mainStackView.replace(homeScreen)
-                } else if (screenId === "profileEdit") {
-                    mainStackView.push(
-                                profileEditScreen) // ← кладём поверх стека
-                }
-            }
-
-            function onBackRequested() {
-                console.log("back requested")
-                if (mainStackView.depth > 1) {
-                    //на ios была проблема с pop(), проверить потом.
-                    mainStackView.pop()
-                    //mainStackView.currentItem.visible = false
-                    //mainStackView.replace(homeScreen)
-                }
+        function onNavigationRequested(screenId) {
+            if (screenId === "home") {
+                // Заменяем весь стек, чтобы нельзя было вернуться на логин
+                mainStackView.replace(homeScreen)
+            } else if (screenId === "profileEdit") {
+                mainStackView.push(profileEditScreen) // ← кладём поверх стека
             }
         }
 
-        // Реакция на изменение статуса авторизации (когда-нибудь пригодится)
-        Connections {
-            target: AppContext
+        function onBackRequested() {
+            console.log("back requested")
+            if (mainStackView.depth > 1) {
+                //на ios была проблема с pop(), проверить потом.
+                mainStackView.pop()
 
-            function onAuthenticationStateChanged() {
-                if (AppContext.isAuthenticated) {
-                    NavManager.navigateTo("home")
-                } else {
-                    mainStackView.clear()
-                    mainStackView.push(loginScreen)
-                }
+                //mainStackView.currentItem.visible = false
+                //mainStackView.replace(homeScreen)
+            } else {
+                NavManager.minimizeApp() // сворачиваем приложение
+            }
+        }
+    }
+
+    ///////////////////////////////////////////
+    // Реакция на изменение статуса авторизации
+    Connections {
+        target: AppContext
+
+        function onAuthenticationStateChanged() {
+            if (AppContext.isAuthenticated) {
+                NavManager.navigateTo("home")
+            } else {
+                mainStackView.clear()
+                mainStackView.push(loginScreen)
             }
         }
     }

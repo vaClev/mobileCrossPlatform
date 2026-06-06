@@ -5,26 +5,28 @@ import QtQuick.Controls.Material
 
 Page {
     id: root
-
     // Свойство, позволяющее переопределить текст кнопки
-    property alias backButtonText: backButton.text
+    property string backButtonText: qsTr("← back")
 
-    // Единый тёмный стиль для всех
-    Material.theme: Material.Dark
-    Material.accent: Material.Orange
+    // Header активен только на iOS – на Android Loader не создаёт ничего
+    header: Loader {
+        active: Qt.platform.os === "ios"
+        sourceComponent: backToolBar
+    }
 
-    header: ToolBar {
-        RowLayout {
-
-            anchors.fill: parent
-            ToolButton {
-                id: backButton
-                text: qsTr("← back")
-                //visible: Qt.platform.os === "ios"
-                onClicked: NavManager.goBack()
-            }
-            Item {
-                Layout.fillWidth: true
+    // Компонент тулбар для хеддера
+    Component {
+        id: backToolBar
+        ToolBar {
+            RowLayout {
+                anchors.fill: parent
+                ToolButton {
+                    text: root.backButtonText
+                    onClicked: NavManager.goBack()
+                }
+                Item {
+                    Layout.fillWidth: true
+                }
             }
         }
     }
