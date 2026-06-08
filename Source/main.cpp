@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("AppContext", appContext);
 
     // Создаем менеджер навигации
-    NavigationManager * navManager = new NavigationManager(&app);
+    NavigationManager * navManager = new NavigationManager(&engine, &app);
     engine.rootContext()->setContextProperty("NavManager", navManager);
 
     // Загружаем QML через модуль (предполагается, что Main.qml зарегистрирован в qt_add_qml_module)

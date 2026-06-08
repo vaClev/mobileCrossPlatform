@@ -7,6 +7,10 @@ ApplicationWindow {
     visible: true
     title: "Mobile App"
 
+    // Свойство доступно всем дочерним элементам - размер иконок
+    property int iconSizePrimary: font.pixelSize * 1.5
+    property int iconSizeSecond: font.pixelSize * 2
+
     ///////////////////////////////////////////
     // Корневой фокусируемый контейнер для перехвата событий нажатия на кнопки на корпусе телефона
     Item {

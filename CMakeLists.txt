@@ -4,7 +4,7 @@ project(lesson0 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
-find_package(Qt6 REQUIRED COMPONENTS Quick Core LinguistTools Network)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core LinguistTools Network Svg)
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
 
@@ -55,6 +55,15 @@ qt_add_qml_module(applesson0
       Source/Services/deepseekclient.cpp
 )
 
+#Добавление ресурсов - иконки
+qt_add_resources(applesson0 "assets"
+    PREFIX "/"
+    FILES
+        assets/icons/home.svg
+        assets/icons/profile.svg
+        assets/icons/news.svg
+)
+
 # ===================================================================
 # Добавление готового .qm файла в ресурсы (для всех платформ)
 # ===================================================================
@@ -72,6 +81,9 @@ endif()
 
 # Свойства цели (для iOS/macOS/Windows)
 set_target_properties(applesson0 PROPERTIES
+    #QT_ANDROID_MIN_SDK_VERSION 26
+    #QT_ANDROID_TARGET_SDK_VERSION 36
+    #QT_ANDROID_COMPILE_SDK_VERSION "android-36"
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
@@ -83,6 +95,7 @@ target_link_libraries(applesson0
     PRIVATE Qt6::Core
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Network
+    PRIVATE Qt6::Svg
 )
 
 # Для macOS – слабая линковка AGL (не особо помогает)

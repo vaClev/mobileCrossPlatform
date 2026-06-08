@@ -4,38 +4,48 @@
 <context>
     <name>HomeScreen</name>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="6"/>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="32"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="6"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="32"/>
-        <location filename="../qml/HomeScreen.qml" line="6"/>
-        <location filename="../qml/HomeScreen.qml" line="32"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/HomeScreen.qml" line="7"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/HomeScreen.qml" line="34"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="7"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="37"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="7"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="34"/>
+        <location filename="../ios-build/lesson0/qml/HomeScreen.qml" line="7"/>
+        <location filename="../ios-build/lesson0/qml/HomeScreen.qml" line="34"/>
+        <location filename="../qml/HomeScreen.qml" line="7"/>
+        <location filename="../qml/HomeScreen.qml" line="37"/>
         <source>Homepage</source>
-        <translation type="unfinished"></translation>
+        <translation>Домашняя</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="35"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="35"/>
-        <location filename="../qml/HomeScreen.qml" line="35"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/HomeScreen.qml" line="37"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="44"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="37"/>
+        <location filename="../ios-build/lesson0/qml/HomeScreen.qml" line="37"/>
+        <location filename="../qml/HomeScreen.qml" line="44"/>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="38"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="38"/>
-        <location filename="../qml/HomeScreen.qml" line="38"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/HomeScreen.qml" line="40"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/HomeScreen.qml" line="51"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/HomeScreen.qml" line="40"/>
+        <location filename="../ios-build/lesson0/qml/HomeScreen.qml" line="40"/>
+        <location filename="../qml/HomeScreen.qml" line="51"/>
         <source>News</source>
-        <translation type="unfinished"></translation>
+        <translation>Новости</translation>
     </message>
 </context>
 <context>
     <name>LoginScreen</name>
     <message>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/LoginScreen.qml" line="6"/>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/LoginScreen.qml" line="6"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/LoginScreen.qml" line="6"/>
+        <location filename="../ios-build/lesson0/qml/LoginScreen.qml" line="6"/>
         <location filename="../qml/LoginScreen.qml" line="6"/>
         <source>LoginScreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Войти</translation>
     </message>
 </context>
 <context>
@@ -88,79 +98,83 @@
 <context>
     <name>MainContent</name>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/MainContent.qml" line="5"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/MainContent.qml" line="5"/>
-        <source>Главная</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/MainContent.qml" line="8"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/MainContent.qml" line="8"/>
-        <source>Добро пожаловать!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/tabsContent/MainContent.qml" line="5"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/MainContent.qml" line="6"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/MainContent.qml" line="6"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/MainContent.qml" line="6"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/MainContent.qml" line="6"/>
+        <location filename="../qml/tabsContent/MainContent.qml" line="6"/>
         <source>Home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Главная</translation>
     </message>
     <message>
-        <location filename="../qml/tabsContent/MainContent.qml" line="8"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/MainContent.qml" line="9"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/MainContent.qml" line="9"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/MainContent.qml" line="9"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/MainContent.qml" line="9"/>
+        <location filename="../qml/tabsContent/MainContent.qml" line="9"/>
         <source>Welcome!</source>
-        <translation type="unfinished"></translation>
+        <translation>Добро пожаловать!</translation>
     </message>
 </context>
 <context>
     <name>NewsScreen</name>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="5"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/NewsScreen.qml" line="5"/>
-        <location filename="../qml/tabsContent/NewsScreen.qml" line="5"/>
-        <source>Новости</source>
-        <translation type="unfinished"></translation>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="6"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="6"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/NewsScreen.qml" line="6"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/NewsScreen.qml" line="6"/>
+        <location filename="../qml/tabsContent/NewsScreen.qml" line="6"/>
+        <source>News</source>
+        <translation type="unfinished">Новости</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="8"/>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/NewsScreen.qml" line="8"/>
-        <location filename="../qml/tabsContent/NewsScreen.qml" line="8"/>
-        <source>Здесь будут новости</source>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="9"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/NewsScreen.qml" line="9"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/NewsScreen.qml" line="9"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/NewsScreen.qml" line="9"/>
+        <location filename="../qml/tabsContent/NewsScreen.qml" line="9"/>
+        <source>Here show news ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PageWithBackButton</name>
+    <message>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/components/PageWithBackButton.qml" line="9"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/components/PageWithBackButton.qml" line="9"/>
+        <location filename="../qml/components/PageWithBackButton.qml" line="9"/>
+        <source>← back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Profile</name>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="7"/>
-        <source>Профиль</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="15"/>
-        <source>Мой профиль</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="20"/>
-        <source>Редактировать</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="7"/>
-        <location filename="../qml/tabsContent/Profile.qml" line="7"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/Profile.qml" line="8"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="8"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="8"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/Profile.qml" line="8"/>
+        <location filename="../qml/tabsContent/Profile.qml" line="8"/>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="15"/>
-        <location filename="../qml/tabsContent/Profile.qml" line="15"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/Profile.qml" line="16"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="16"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="16"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/Profile.qml" line="16"/>
+        <location filename="../qml/tabsContent/Profile.qml" line="16"/>
         <source>My Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Мой профиль</translation>
     </message>
     <message>
-        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="20"/>
-        <location filename="../qml/tabsContent/Profile.qml" line="20"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/tabsContent/Profile.qml" line="22"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/tabsContent/Profile.qml" line="22"/>
+        <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/tabsContent/Profile.qml" line="21"/>
+        <location filename="../ios-build/lesson0/qml/tabsContent/Profile.qml" line="22"/>
+        <location filename="../qml/tabsContent/Profile.qml" line="22"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
 </context>
 <context>
@@ -168,137 +182,160 @@
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="9"/>
         <source>User profile</source>
-        <translation type="unfinished">Профиль пользователя</translation>
+        <translation>Профиль пользователя</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="30"/>
         <source>Fill profile</source>
-        <translation type="unfinished">Заполните профиль</translation>
+        <translation>Заполните профиль</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="39"/>
         <source>Name:</source>
-        <translation type="unfinished">Имя:</translation>
+        <translation>Имя:</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="44"/>
         <source>Enter your name</source>
-        <translation type="unfinished">Введите имя</translation>
+        <translation>Введите имя</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="52"/>
         <source>Age:</source>
-        <translation type="unfinished">Возраст:</translation>
+        <translation>Возраст:</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="66"/>
         <source>Notification:</source>
-        <translation type="unfinished">Уведомления:</translation>
+        <translation>Уведомления:</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="77"/>
         <source>Expirience:</source>
-        <translation type="unfinished">Опыт:</translation>
+        <translation>Опыт:</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="83"/>
         <source>Beginer</source>
-        <translation type="unfinished">Начинающий</translation>
+        <translation>Начинающий</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="88"/>
         <source>Middle</source>
-        <translation type="unfinished">Средний</translation>
+        <translation>Средний</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="93"/>
         <source>Senior</source>
-        <translation type="unfinished">Опытный</translation>
+        <translation>Опытный</translation>
     </message>
     <message>
         <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEdit.qml" line="101"/>
         <source>Save profile</source>
-        <translation type="unfinished">Сохранить профиль</translation>
+        <translation>Сохранить профиль</translation>
     </message>
 </context>
 <context>
     <name>ProfileEditScreen</name>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="9"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="9"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="9"/>
         <source>User profile</source>
-        <translation type="unfinished">Профиль пользователя</translation>
+        <translation>Профиль пользователя</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="30"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="12"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="12"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="30"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="30"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="26"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="12"/>
         <source>Fill profile</source>
-        <translation type="unfinished">Заполните профиль</translation>
+        <translation>Заполните профиль</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="39"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="21"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="21"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="39"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="39"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="35"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="21"/>
         <source>Name:</source>
-        <translation type="unfinished">Имя:</translation>
+        <translation>Имя:</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="44"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="26"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="26"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="44"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="44"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="40"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="26"/>
         <source>Enter your name</source>
-        <translation type="unfinished">Введите имя</translation>
+        <translation>Введите имя</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="52"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="34"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="34"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="52"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="52"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="48"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="34"/>
         <source>Age:</source>
-        <translation type="unfinished">Возраст:</translation>
+        <translation>Возраст:</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="66"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="48"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="48"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="66"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="66"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="62"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="48"/>
         <source>Notification:</source>
-        <translation type="unfinished">Уведомления:</translation>
+        <translation>Уведомления:</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="77"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="59"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="59"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="77"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="77"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="73"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="59"/>
         <source>Expirience:</source>
-        <translation type="unfinished">Опыт:</translation>
+        <translation>Опыт:</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="83"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="65"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="65"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="83"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="83"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="79"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="65"/>
         <source>Beginer</source>
-        <translation type="unfinished">Начинающий</translation>
+        <translation>Начинающий</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="88"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="70"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="70"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="88"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="88"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="84"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="70"/>
         <source>Middle</source>
-        <translation type="unfinished">Средний</translation>
+        <translation>Средний</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="93"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="75"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="75"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="93"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="93"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="89"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="75"/>
         <source>Senior</source>
-        <translation type="unfinished">Опытный</translation>
+        <translation>Опытный</translation>
     </message>
     <message>
-        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="101"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_arm64_v8a-Debug/lesson0/qml/ProfileEditScreen.qml" line="83"/>
+        <location filename="../build/Android_Qt_6_8_3_Clang_x86_64-Debug/lesson0/qml/ProfileEditScreen.qml" line="83"/>
         <location filename="../build/Desktop_Qt_6_8_3_MinGW_64_bit-Release/lesson0/qml/ProfileEditScreen.qml" line="101"/>
-        <location filename="../qml/ProfileEditScreen.qml" line="101"/>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="97"/>
+        <location filename="../qml/ProfileEditScreen.qml" line="83"/>
         <source>Save profile</source>
-        <translation type="unfinished">Сохранить профиль</translation>
+        <translation>Сохранить профиль</translation>
+    </message>
+    <message>
+        <location filename="../ios-build/lesson0/qml/ProfileEditScreen.qml" line="21"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

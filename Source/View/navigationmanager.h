@@ -4,13 +4,17 @@
 
 #include <QObject>
 class AppContext;
+class QQmlApplicationEngine;
 
 class NavigationManager : public QObject
 {
     Q_OBJECT
 
+private:
+    QQmlApplicationEngine * m_engine = nullptr;
+
 public:
-    explicit NavigationManager(QObject *parent = nullptr);
+    explicit NavigationManager(QQmlApplicationEngine * engine, QObject *parent = nullptr);
 
     /// перейти на экран
     Q_INVOKABLE void navigateTo(const QString & screenId);
@@ -19,7 +23,8 @@ public:
     /// Свернуть приложение Android / ios - заглушка
     Q_INVOKABLE void minimizeApp();
 
-
+private:
+    void shutdownApp();
 signals:
     void navigationRequested(const QString &screenId);
     void backRequested();

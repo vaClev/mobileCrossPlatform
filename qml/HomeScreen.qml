@@ -31,20 +31,32 @@ Page {
             id: tabBar
             Layout.fillWidth: true
             TabButton {
+                icon.source: "qrc:/assets/icons/home.svg"
+                icon.width: appWindow.iconSizeSecond
+                icon.height: appWindow.iconSizeSecond
                 text: qsTr("Homepage")
+                display: AbstractButton.TextUnderIcon
             }
             TabButton {
+                icon.source: "qrc:/assets/icons/profile.svg"
+                icon.width: appWindow.iconSizeSecond
+                icon.height: appWindow.iconSizeSecond
                 text: qsTr("Profile")
+                display: AbstractButton.TextUnderIcon
             }
             TabButton {
+                icon.source: "qrc:/assets/icons/news.svg"
+                icon.width: appWindow.iconSizeSecond
+                icon.height: appWindow.iconSizeSecond
                 text: qsTr("News")
+                display: AbstractButton.TextUnderIcon
             }
         }
     }
 
     footer: Button {
         id: exit
-        text: "Выйти"
+        text: qsTr("Exit")
         onClicked: AppContext.logout()
     }
 }

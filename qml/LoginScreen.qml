@@ -9,11 +9,11 @@ Page {
         spacing: 10
         TextField {
             id: loginField
-            placeholderText: "Login"
+            placeholderText: qsTr("Login")
         }
         TextField {
             id: passField
-            placeholderText: "Password"
+            placeholderText: qsTr("Password")
             echoMode: TextInput.Password
         }
         Button {
@@ -24,6 +24,7 @@ Page {
 
         Button {
             text: "Check"
+            visible: false //Включить можно для отладки если хочется
             onClicked: console.log("Auth state:", AppContext.isAuthenticated)
         }
     }

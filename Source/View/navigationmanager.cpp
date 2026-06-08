@@ -1,4 +1,5 @@
 #include "navigationmanager.h"
+#include <QQmlApplicationEngine>
 
 #ifdef Q_OS_ANDROID
 #include <QGuiApplication>
@@ -7,10 +8,10 @@
 
 ///////////////////////////////////////////
 // common - кроссплатформенные методы
-NavigationManager::NavigationManager(QObject *parent)
+NavigationManager::NavigationManager(QQmlApplicationEngine * engine, QObject *parent)
     : QObject{parent}
+    ,m_engine{engine}
 {}
-
 
 void NavigationManager::navigateTo(const QString &screenId)
 {
@@ -46,6 +47,23 @@ void NavigationManager::minimizeApp()
                                     QJniObject::fromString("android.intent.category.HOME").object());
             activity.callMethod<void>("startActivity", "(Landroid/content/Intent;)V", intent.object());
         }
+        else
+        {
+            shutdownApp();
+        }
+    }
+    else
+    {
+        shutdownApp();
     }
 #endif
+}
+
+void NavigationManager::shutdownApp()
+{
+    if (m_engine) {
+        m_engine->clearComponentCache();
+        qApp->processEvents();
+    }
+    qApp->quit();
 }
