@@ -5,37 +5,6 @@ import lesson0
 Page {
     title: qsTr("News")
 
-    // Модель данных (пока "встроенная")
-    /// По сути например список полученный с сервера
-    ListModel {
-        id: newsModel
-        ListElement {
-            title: "Вышла Qt 6.9"
-            date: "12 июня 2026"
-            summary: "Релиз с новыми возможностями для мобильной разработки."
-        }
-        ListElement {
-            title: "Обновление Android 16"
-            date: "10 июня 2026"
-            summary: "Google анонсировала Android 16 Beta 3."
-        }
-        ListElement {
-            title: "WWDC 2026"
-            date: "5 июня 2026"
-            summary: "Apple представила новые инструменты для разработчиков."
-        }
-        ListElement {
-            title: "Советы по QML"
-            date: "1 июня 2026"
-            summary: "10 советов по оптимизации ListView."
-        }
-        ListElement {
-            title: "Кроссплатформенная разработка"
-            date: "28 мая 2026"
-            summary: "Сравнение Flutter, React Native и Qt Quick."
-        }
-    }
-
     /// Контейнер в котором будут размещаться элементы списка
     ListView {
         id: newsList
@@ -53,7 +22,7 @@ Page {
             height: 100
             radius: 8
             color: "#2c2c2c"
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: ListView.view.horizontalCenter
 
             Column {
                 anchors.fill: parent
@@ -61,7 +30,7 @@ Page {
                 spacing: 4
 
                 Text {
-                    text: title
+                    text: model.title
                     color: "white"
                     font.pixelSize: 16
                     font.bold: true
@@ -70,13 +39,13 @@ Page {
                 }
 
                 Text {
-                    text: date
+                    text: model.date
                     color: "#aaaaaa"
                     font.pixelSize: 12
                 }
 
                 Text {
-                    text: summary
+                    text: model.summary
                     color: "#cccccc"
                     font.pixelSize: 13
                     elide: Text.ElideRight
@@ -88,7 +57,8 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    console.log("Новость:", title)
+                    //имена полей определены  NewsListModel::roleNames()
+                    console.log("Новость #" + model.newsId + ": " + model.title)
                     // Позже: NavManager.navigateTo("newsDetail") с передачей данных
                 }
             }
@@ -98,6 +68,14 @@ Page {
         ScrollBar.vertical: ScrollBar {
             policy: ScrollBar.AsNeeded
         }
+    }
+    // Кнопка для "принудительного обновления" (имитация запроса к серверу)
+    RoundButton {
+        text: "⟳"
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.margins: 16
+        onClicked: newsModel.fetchNews()
     }
 
     // Пока нет новостей — сообщение

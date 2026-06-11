@@ -51,6 +51,10 @@ qt_add_qml_module(applesson0
       Source/View/appcontext.cpp
       Source/View/navigationmanager.h
       Source/View/navigationmanager.cpp
+      # модели для списков
+      Source/View/ListModels/newslistmodel.h
+      Source/View/ListModels/newslistmodel.cpp
+      # сервисы
       Source/Services/deepseekclient.h
       Source/Services/deepseekclient.cpp
 )
