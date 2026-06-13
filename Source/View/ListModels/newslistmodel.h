@@ -17,15 +17,17 @@ struct NewsItem
 };
 
 
-// Структура для одной новости //TODO DTO
+// Класс модели данных списка новостей
 //////////////////////////////
 class NewsListModel : public QAbstractListModel
 {
     Q_OBJECT
 
     QList<NewsItem> m_news; ///<Список новостей
+    bool m_loading = false; ///<Состояние - "идет загрузка данных"
 
-    // Это свойство будет доступно в QML
+    // Эти свойства будут доступны в QML
+    Q_PROPERTY(bool isLoading READ isLoading NOTIFY loadingChanged)
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 
 public:
@@ -41,15 +43,20 @@ public:
     ///Конструктор
     explicit NewsListModel(QObject * parent = nullptr);
 
-public:// Обязательные методы QAbstractListModel
+public:// Обязательные методы по контракту QAbstractListModel
     int rowCount(const QModelIndex & parent = QModelIndex()) const override;
     QVariant data(const QModelIndex & index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-public:// Метод для обновления данных
+public:// Собственные методы NewsListModel
+    /// Происходит загрузка данных?
+    bool isLoading() const;
+    /// Метод для обновления данных
     Q_INVOKABLE void fetchNews();
 
 signals:
+    /// при изменении состояния загрузки
+    void loadingChanged();
     /// при изменении количества элементов
     void countChanged();
     /// когда данные готовы
@@ -58,8 +65,7 @@ signals:
     void errorOccurred(const QString &errorMessage);
 
 private:
-    // Функция-заглушка, которая имитирует загрузку с сервера
-    void loadStaticData();
+    void finalizeUpdate();
 };
 
 #endif // NEWSLISTMODEL_H

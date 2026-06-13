@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("NavManager", navManager);
 
     // Создаём модель новостей
-    NewsListModel newsModel;
-    engine.rootContext()->setContextProperty("newsModel", &newsModel);
+    NewsListModel * newsModel = new NewsListModel(&app);
+    engine.rootContext()->setContextProperty("newsModel", newsModel);
 
     // Загружаем QML через модуль (предполагается, что Main.qml зарегистрирован в qt_add_qml_module)
     engine.loadFromModule("lesson0", "Main");

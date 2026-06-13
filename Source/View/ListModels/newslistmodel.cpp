@@ -1,9 +1,9 @@
 #include "newslistmodel.h"
+#include <QTimer.h>
 
 NewsListModel::NewsListModel(QObject * parent):
     QAbstractListModel(parent)
 {
-    loadStaticData();
 }
 
 
@@ -54,62 +54,90 @@ QHash<int, QByteArray> NewsListModel::roleNames() const
 }
 
 
+
 /////////////////////////////////////
 // Собственные методы NewsListModel
 /////////////////////////////////////
-void NewsListModel::fetchNews()
+bool NewsListModel::isLoading() const
 {
-    beginResetModel(); // Сигнализируем, что модель сейчас полностью обновится
-    m_news.clear();
+    return m_loading;
+}
 
-    // В будущем здесь будет HTTP-запрос на сервер
-    // Пока просто перезагружаем статические данные
-    // Добавляем чуть больше новостей, чем в QML-версии
-    //////////////////////////////////////////////////
+namespace
+{
+/// Просто загружаем статические данные
+QList<NewsItem> getTestData()
+{
+    QList<NewsItem> news;
     NewsItem item;
 
     item.id = 1;
     item.title = "Вышла Qt 6.10";
     item.date = "10 июня 2026";
     item.summary = "Релиз с новыми возможностями для мобильной разработки и улучшенной производительностью.";
-    m_news.append(item);
+    news.append(item);
 
     item.id = 2;
     item.title = "Обновление Android 16";
     item.date = "8 июня 2026";
     item.summary = "Google анонсировала Android 16 Beta 3 с улучшенной системой разрешений.";
-    m_news.append(item);
+    news.append(item);
 
     item.id = 3;
     item.title = "WWDC 2026";
     item.date = "5 июня 2026";
     item.summary = "Apple представила новые инструменты для разработчиков и обновления SwiftUI.";
-    m_news.append(item);
+    news.append(item);
 
     item.id = 4;
     item.title = "Советы по QML";
     item.date = "1 июня 2026";
     item.summary = "10 советов по оптимизации ListView и работе с большими моделями данных.";
-    m_news.append(item);
+    news.append(item);
 
     item.id = 5;
     item.title = "Кроссплатформенная разработка";
     item.date = "28 мая 2026";
     item.summary = "Сравнение Flutter, React Native и Qt Quick в 2026 году.";
-    m_news.append(item);
+    news.append(item);
 
     item.id = 6;
     item.title = "Безопасность мобильных приложений";
     item.date = "25 мая 2026";
     item.summary = "Как защитить данные пользователей в мобильных приложениях на Qt.";
-    m_news.append(item);
-    ///////////////////////////////////
+    news.append(item);
 
-    endResetModel();   // Модель обновлена
-    emit dataLoaded();
+    return news;
+}
 }
 
-void NewsListModel::loadStaticData()
+/// Подтянуть новости (с сервера)
+void NewsListModel::fetchNews()
 {
-    fetchNews();   // Просто вызываем тот же метод
+    if (m_loading)
+        return;// уже идёт загрузка
+
+    m_loading = true;
+    emit loadingChanged();
+    beginResetModel(); // 1. Сигнализируем, что модель сейчас полностью обновится
+    m_news.clear();
+
+    // В будущем здесь будет асинхронный HTTP-запрос на сервер
+    // Имитация задержки сети – через 1.5 секунды загружаем данные
+    QTimer::singleShot(1500, this, [this]() {
+      m_news.append(getTestData());
+      finalizeUpdate();
+    });
+}
+
+///Сигнализировать о завершении обновления данных
+void NewsListModel::finalizeUpdate()
+{
+    endResetModel(); // 2. Сигнализируем, что модель обновлена
+
+    m_loading = false;
+    emit loadingChanged();
+
+    emit countChanged();
+    emit dataLoaded();
 }

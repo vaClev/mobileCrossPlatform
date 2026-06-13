@@ -13,16 +13,16 @@ Page {
         spacing: 8
         clip: true //Обрезка содержимого по границам
 
-        model: newsModel //Связка с моделью которую отображаем
+        model: newsModel ? newsModel : null //Связка с моделью которую отображаем
 
         /// описание одной карточки
         delegate: Rectangle {
             id: newsItem
-            width: ListView.view.width - 20
+            x: 10 // отступ слева
+            width: ListView.view.width - 20 // ширина с учётом отступов с обеих сторон
             height: 100
             radius: 8
             color: "#2c2c2c"
-            anchors.horizontalCenter: ListView.view.horizontalCenter
 
             Column {
                 anchors.fill: parent
@@ -68,14 +68,31 @@ Page {
         ScrollBar.vertical: ScrollBar {
             policy: ScrollBar.AsNeeded
         }
+
+        // футер с индикатором загрузки.
+        footer: Item {
+            width: ListView.view.width
+            height: newsModel && newsModel.isLoading ? 60 : 0
+            visible: newsModel && newsModel.isLoading
+            clip: true
+
+            BusyIndicator {
+                anchors.centerIn: parent
+                running: newsModel && newsModel.isLoading
+            }
+        }
     }
+
     // Кнопка для "принудительного обновления" (имитация запроса к серверу)
     RoundButton {
         text: "⟳"
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.margins: 16
-        onClicked: newsModel.fetchNews()
+        enabled: newsModel
+                 && !newsModel.isLoading // неактивна во время загрузки
+        onClicked: if (newsModel)
+                       newsModel.fetchNews()
     }
 
     // Пока нет новостей — сообщение
@@ -83,6 +100,6 @@ Page {
         anchors.centerIn: parent
         text: qsTr("Новостей пока нет")
         color: "#888888"
-        visible: newsModel.count === 0
+        visible: !newsModel || newsModel.count === 0
     }
 }
