@@ -1,8 +1,8 @@
 #include "navigationmanager.h"
 #include <QQmlApplicationEngine>
+#include <QGuiApplication>
 
 #ifdef Q_OS_ANDROID
-#include <QGuiApplication>
 #include <QJniObject>
 #endif
 

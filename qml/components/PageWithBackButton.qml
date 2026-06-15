@@ -10,7 +10,7 @@ Page {
 
     // Header активен только на iOS – на Android Loader не создаёт ничего
     header: Loader {
-        active: Qt.platform.os === "ios"
+        active: Qt.platform.os !== "android"
         sourceComponent: backToolBar
     }
 

@@ -1,10 +1,55 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import lesson0
 
 Page {
     title: qsTr("Homepage")
+
+    header: ToolBar {
+        Material.background: Material.color(Material.Grey, Material.Shade900)
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                icon.source: "qrc:/assets/icons/menu.svg"
+                icon.width: appWindow.iconSize
+                icon.height: appWindow.iconSize
+                onClicked: mainDrawer.open()
+            }
+            Label {
+                text: qsTr("Homepage")
+                font.pixelSize: 18
+                elide: Label.ElideRight
+                Layout.fillWidth: true
+            }
+            Item {
+                Layout.fillWidth: true
+            }
+        }
+    }
+
+    // Боковое меню - компонент MainDrawer
+    MainDrawer {
+        id: mainDrawer
+        onMenuItemSelected: function (itemId) {
+            switch (itemId) {
+            case "profile":
+                NavManager.navigateTo("profileEdit")
+                break
+            case "settings":
+                // TODO: переход на настройки
+                break
+            case "about":
+                // TODO: показать информацию
+                break
+            case "logout":
+                AppContext.logout()
+                break
+            }
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
@@ -52,11 +97,5 @@ Page {
                 display: AbstractButton.TextUnderIcon
             }
         }
-    }
-
-    footer: Button {
-        id: exit
-        text: qsTr("Exit")
-        onClicked: AppContext.logout()
     }
 }

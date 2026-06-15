@@ -1,2 +1,3 @@
 module lesson0
-PageWithBackButton 1.0 PageWithBackButton.qml.qml
+PageWithBackButton 1.0 PageWithBackButton.qml
+MainDrawer 1.0 MainDrawer.qml

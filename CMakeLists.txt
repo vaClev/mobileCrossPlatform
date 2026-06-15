@@ -40,6 +40,7 @@ qt_add_qml_module(applesson0
         qml/tabsContent/NewsScreen.qml
         # Компоненты для повторного использования
         qml/components/PageWithBackButton.qml
+        qml/components/MainDrawer.qml
     RESOURCES
         qml/qmldir
         qml/tabsContent/qmldir
@@ -66,6 +67,7 @@ qt_add_resources(applesson0 "assets"
         assets/icons/home.svg
         assets/icons/profile.svg
         assets/icons/news.svg
+        assets/icons/menu.svg
 )
 
 # ===================================================================
