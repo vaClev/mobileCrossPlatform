@@ -6,8 +6,6 @@ import lesson0
 
 Page {
     title: qsTr("Profile")
-    Material.theme: Material.Dark
-    Material.accent: Material.Orange
 
     ColumnLayout {
         anchors.centerIn: parent

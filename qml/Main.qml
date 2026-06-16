@@ -8,20 +8,20 @@ ApplicationWindow {
     visible: true
     title: "Mobile App"
 
+    // Привязываем тему Material к свойству AppContext
+    Material.theme: AppContext.isDarkTheme ? Material.Dark : Material.Light
+    Material.accent: Material.Orange
+
     // Свойство доступно всем дочерним элементам - размер иконок
     property int iconSizePrimary: font.pixelSize * 1.5
     property int iconSizeSecond: font.pixelSize * 2
+    property color textColor: Material.theme === Material.Dark ? "white" : "black"
 
     ///////////////////////////////////////////
     // Корневой фокусируемый контейнер для перехвата событий нажатия на кнопки на корпусе телефона
     Item {
         anchors.fill: parent
         focus: true
-
-        ///////////////////////////////////////////
-        // Единый тёмный стиль для всех
-        Material.theme: Material.Dark
-        Material.accent: Material.Orange
 
         ///////////////////////////////////////////
         // Обработчик нажатия кнопки "назад" - Android: на ios просто не сработает
@@ -54,6 +54,10 @@ ApplicationWindow {
             id: profileEditScreen
             ProfileEditScreen {}
         }
+        Component {
+            id: settingsScreen
+            SettingsScreen {}
+        }
     }
 
     ///////////////////////////////////////////
@@ -66,7 +70,9 @@ ApplicationWindow {
                 // Заменяем весь стек, чтобы нельзя было вернуться на логин
                 mainStackView.replace(homeScreen)
             } else if (screenId === "profileEdit") {
-                mainStackView.push(profileEditScreen) // ← кладём поверх стека
+                mainStackView.push(profileEditScreen) // ← кладём на стек
+            } else if (screenId === "settings") {
+                mainStackView.push(settingsScreen) // ← кладём на стек
             }
         }
 

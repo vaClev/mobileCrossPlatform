@@ -8,7 +8,13 @@ Page {
     title: qsTr("Homepage")
 
     header: ToolBar {
-        Material.background: Material.color(Material.Grey, Material.Shade900)
+        background: Rectangle {
+            color: AppContext.isDarkTheme ? Material.color(
+                                                Material.Grey,
+                                                Material.Shade900) : Material.color(
+                                                Material.Grey,
+                                                Material.Shade100)
+        }
         RowLayout {
             anchors.fill: parent
             ToolButton {
@@ -16,12 +22,14 @@ Page {
                 icon.width: appWindow.iconSize
                 icon.height: appWindow.iconSize
                 onClicked: mainDrawer.open()
+                icon.color: appWindow.textColor
             }
             Label {
                 text: qsTr("Homepage")
                 font.pixelSize: 18
                 elide: Label.ElideRight
                 Layout.fillWidth: true
+                color: appWindow.textColor
             }
             Item {
                 Layout.fillWidth: true
@@ -38,7 +46,7 @@ Page {
                 NavManager.navigateTo("profileEdit")
                 break
             case "settings":
-                // TODO: переход на настройки
+                NavManager.navigateTo("settings")
                 break
             case "about":
                 // TODO: показать информацию

@@ -10,9 +10,9 @@ Drawer {
     height: parent.height
     edge: Qt.LeftEdge //слевой стороны экрана
 
-    background: Rectangle {
-        color: "#2c2c2c"
-    }
+    //background: Rectangle {
+    //    color: "#2c2c2c"
+    //}
 
     // Сигнал, который сообщает, какой пункт выбран
     signal menuItemSelected(string itemId)
@@ -29,7 +29,7 @@ Drawer {
             text: qsTr("Menu")
             font.pixelSize: 24
             font.bold: true
-            color: "white"
+            color: appWindow.textColor
             Layout.alignment: Qt.AlignHCenter
         }
 
@@ -38,7 +38,7 @@ Drawer {
             flat: true
             contentItem: Text {
                 text: parent.text
-                color: "white"
+                color: appWindow.textColor
                 font.pixelSize: 16
                 horizontalAlignment: Text.AlignLeft
             }
@@ -54,7 +54,7 @@ Drawer {
             flat: true
             contentItem: Text {
                 text: parent.text
-                color: "white"
+                color: appWindow.textColor
                 font.pixelSize: 16
                 horizontalAlignment: Text.AlignLeft
             }
@@ -70,7 +70,7 @@ Drawer {
             flat: true
             contentItem: Text {
                 text: parent.text
-                color: "white"
+                color: appWindow.textColor
                 font.pixelSize: 16
                 horizontalAlignment: Text.AlignLeft
             }

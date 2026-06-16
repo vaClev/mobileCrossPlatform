@@ -9,9 +9,11 @@ class AppContext : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool isAuthenticated  READ isAuthenticated  NOTIFY authenticationStateChanged)
+    Q_PROPERTY(bool isDarkTheme READ isDarkTheme NOTIFY darkThemeChanged)
 
 private:
     bool m_isAuthenticated = false;
+    bool m_isDarkTheme = true;   // цветовая тема интерфейса: темная = true, светлая = false.
 public:
     explicit AppContext(QObject *parent = nullptr);
 
@@ -23,9 +25,15 @@ public:
     /// Разлогиниться
     Q_INVOKABLE void logout();
 
+    /// Выдать текущую цветовую схему интерфейса
+    bool isDarkTheme() const;
+    /// Переключить цветовую тему интерфейса
+    Q_INVOKABLE void setDarkTheme(bool dark);
 signals:
-    /// сигнал об изменении статуса аутентификации
+    /// Сигнал об изменении статуса аутентификации
     void authenticationStateChanged();
+    /// Сигнал об изменении темы интерфейса светлая/темная
+    void darkThemeChanged();
 };
 
 #endif // APPCONTEXT_H

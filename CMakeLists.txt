@@ -34,6 +34,7 @@ qt_add_qml_module(applesson0
         qml/HomeScreen.qml
         qml/LoginScreen.qml
         qml/ProfileEditScreen.qml
+        qml/SettingsScreen.qml
         # контент внутри SwipeView Tab'ов главной страницы
         qml/tabsContent/MainContent.qml
         qml/tabsContent/Profile.qml
@@ -69,7 +70,6 @@ qt_add_resources(applesson0 "assets"
         assets/icons/news.svg
         assets/icons/menu.svg
 )
-
 # ===================================================================
 # Добавление готового .qm файла в ресурсы (для всех платформ)
 # ===================================================================

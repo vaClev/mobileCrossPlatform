@@ -96,25 +96,5 @@ PageWithBackButton {
         Item {
             Layout.fillHeight: true
         }
-
-        /// Переключатель языка
-        Row {
-            Layout.alignment: Qt.AlignHCenter
-            spacing: 10
-            Button {
-                text: "RU"
-                highlighted: languageManager
-                             && languageManager.currentLanguage === "ru"
-                onClicked: if (languageManager)
-                               languageManager.setLanguage("ru")
-            }
-            Button {
-                text: "EN"
-                highlighted: languageManager
-                             && languageManager.currentLanguage === "en"
-                onClicked: if (languageManager)
-                               languageManager.setLanguage("en")
-            }
-        }
     }
 }

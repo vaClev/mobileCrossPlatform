@@ -30,3 +30,20 @@ void AppContext::logout()
     m_isAuthenticated = false;
     emit authenticationStateChanged();
 }
+
+// Методы работы с сотоянием темы интерфейса
+////////////////////////////////////
+bool AppContext::isDarkTheme() const
+{
+    return m_isDarkTheme;
+}
+
+
+void AppContext::setDarkTheme(bool dark)
+{
+    if(m_isDarkTheme == dark)
+        return;
+
+    m_isDarkTheme = dark;
+    emit darkThemeChanged();
+}

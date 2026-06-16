@@ -22,7 +22,7 @@ Page {
             width: ListView.view.width - 20 // ширина с учётом отступов с обеих сторон
             height: 100
             radius: 8
-            color: "#2c2c2c"
+            color: AppContext.isDarkTheme ? "#2c2c2c" : "#f0f0f0"
 
             Column {
                 anchors.fill: parent
@@ -31,7 +31,7 @@ Page {
 
                 Text {
                     text: model.title
-                    color: "white"
+                    color: appWindow.textColor
                     font.pixelSize: 16
                     font.bold: true
                     elide: Text.ElideRight

@@ -3,3 +3,4 @@ Main 1.0 Main.qml
 LoginScreen 1.0 LoginScreen.qml
 HomeScreen 1.0 HomeScreen.qml
 ProfileEditScreen 1.0 ProfileEditScreen.qml
+SettingsScreen 1.0 SettingsScreen.qml
