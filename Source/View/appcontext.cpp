@@ -1,9 +1,31 @@
 #include "appcontext.h"
+#include "Source/Services/settingsstore.h"
+#include "Source/languagemanager.h"
 
-//Конструктор по умолчанию
-AppContext::AppContext(QObject *parent)
-    : QObject{parent}
-{}
+//Конструктор
+AppContext::AppContext(std::shared_ptr<SettingsStore> settingsStore,
+                       LanguageManager *languageManager,
+                       QObject *parent)
+    : QObject(parent)
+    , m_settings(std::move(settingsStore))
+    , m_languageManager(languageManager)
+{
+    loadSettings();
+}
+
+///загрузка сохраненных настроек
+void AppContext::loadSettings()
+{
+    if (!m_settings) return;
+
+    m_isDarkTheme = m_settings->darkTheme();
+
+    if(m_languageManager)
+    {
+        QString currentLanguage = QString::fromStdString(m_settings->language());
+        m_languageManager->setLanguage(currentLanguage);
+    }
+}
 
 bool AppContext::isAuthenticated() const
 {
@@ -44,6 +66,32 @@ void AppContext::setDarkTheme(bool dark)
     if(m_isDarkTheme == dark)
         return;
 
-    m_isDarkTheme = dark;
-    emit darkThemeChanged();
+    if (m_settings) {
+        m_settings->setDarkTheme(dark);
+        m_isDarkTheme = dark;
+        emit darkThemeChanged();
+    }
+}
+
+
+QString AppContext::language() const
+{
+    // Берём текущий язык из LanguageManager
+    if (m_languageManager)
+        return m_languageManager->currentLanguage();
+
+    return QStringLiteral("en");
+}
+
+
+void AppContext::setLanguage(const QString &lang)
+{
+  if (!m_languageManager || m_languageManager->currentLanguage() == lang)
+    return;
+
+  m_languageManager->setLanguage(lang);
+  if (m_settings)
+    m_settings->setLanguage(lang.toStdString());
+
+  emit languageChanged();
 }

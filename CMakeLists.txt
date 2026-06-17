@@ -4,7 +4,7 @@ project(lesson0 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
-find_package(Qt6 REQUIRED COMPONENTS Quick Core LinguistTools Network Svg)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core LinguistTools Network Svg Sql)
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
 
@@ -59,6 +59,12 @@ qt_add_qml_module(applesson0
       # сервисы
       Source/Services/deepseekclient.h
       Source/Services/deepseekclient.cpp
+      Source/Services/settingsstore.h
+      Source/Services/settingsstore.cpp
+      # работа с Базой данных
+      Source/Database/IDatabaseManager.h
+      Source/Database/Impl/DatabaseManagerQtSqlite.h
+      Source/Database/Impl/DatabaseManagerQtSqlite.cpp
 )
 
 #Добавление ресурсов - иконки
@@ -102,6 +108,7 @@ target_link_libraries(applesson0
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Network
     PRIVATE Qt6::Svg
+    PRIVATE Qt6::Sql
 )
 
 # Для macOS – слабая линковка AGL (не особо помогает)

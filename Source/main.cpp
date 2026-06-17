@@ -1,3 +1,4 @@
+#include <memory>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QTranslator>
@@ -6,26 +7,24 @@
 #include "View/navigationmanager.h"
 #include "View/ListModels/newslistmodel.h"
 
-#include<QDirIterator>
+#include "Database/Impl/DatabaseManagerQtSqlite.h"
+#include "Services/settingsstore.h"
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
     LanguageManager * langManager = new LanguageManager(&engine, &app);
-    // Установить язык на основе системной локали
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        if (locale.startsWith(QStringLiteral("ru"))) {
-            langManager->setLanguage(QStringLiteral("ru"));
-            break;
-        }
-    }
-    // Устанавливаем контекстное свойство язык до загрузки QML
-    engine.rootContext()->setContextProperty("languageManager", langManager);
+
+    //Создаем контроллер базы данных SqLite
+    auto db = std::make_shared<DatabaseManagerQtSqlite>();
+    db->initialize();
+    // создаем сервис сохранения настроек
+    auto settingsStore = std::make_shared<SettingsStore>(db);
 
     // Создаем и регистрируем контекст
-    AppContext * appContext = new AppContext(&app);
+    AppContext * appContext = new AppContext(settingsStore, langManager, &app);
     engine.rootContext()->setContextProperty("AppContext", appContext);
 
     // Создаем менеджер навигации

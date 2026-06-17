@@ -42,17 +42,15 @@ PageWithBackButton {
             }
             Button {
                 text: "RU"
-                highlighted: languageManager
-                             && languageManager.currentLanguage === "ru"
-                onClicked: if (languageManager)
-                               languageManager.setLanguage("ru")
+                highlighted: AppContext && AppContext.language === "ru"
+                onClicked: if (AppContext)
+                               AppContext.setLanguage("ru")
             }
             Button {
                 text: "EN"
-                highlighted: languageManager
-                             && languageManager.currentLanguage === "en"
-                onClicked: if (languageManager)
-                               languageManager.setLanguage("en")
+                highlighted: AppContext && AppContext.language === "en"
+                onClicked: if (AppContext)
+                               AppContext.setLanguage("en")
             }
         }
         /// заполнитель "пружина"

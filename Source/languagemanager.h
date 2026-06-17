@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LANGUAGEMANAGER_H
 #define LANGUAGEMANAGER_H
 
@@ -10,12 +11,11 @@
 class LanguageManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString currentLanguage READ currentLanguage NOTIFY languageChanged)
 
 private:
     QQmlApplicationEngine * m_engine;//
     QTranslator *m_translator;       // переводчик
-    QString m_currentLanguage;       // туекущий язык (по умолчанию английский)
+    QString m_currentLanguage;       // текущий язык (по умолчанию английский)
 
 public:
     /// Конструктор
@@ -24,8 +24,8 @@ public:
     /// Текущий язык
     QString currentLanguage() const;
 
-    /// Установить язык  //Q_INVOKABLE вызываемый из QML файла
-    Q_INVOKABLE void setLanguage(const QString &language);
+    /// Установить язык
+    void setLanguage(const QString &language);
 
 signals:
     void languageChanged();
