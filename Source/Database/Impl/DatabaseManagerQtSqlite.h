@@ -4,11 +4,15 @@
 
 #include <QString>
 #include "Source/Database/IDatabaseManager.h"
+#include <QMutex>
+#include <QSqlQuery>
 
 class DatabaseManagerQtSqlite : public IDatabaseManager
 {
     QString m_databaseName;
     bool m_initialized = false;
+    mutable QMutex m_mutex;
+
 public:
     explicit DatabaseManagerQtSqlite(const std::string & databaseName = "lesson0.db");
     ~DatabaseManagerQtSqlite() override;
@@ -16,17 +20,14 @@ public:
 public:/// IDatabaseManager
     bool initialize() override;
     void closeConnection() override;
-    bool saveSetting(const std::string & key, const DbValue & value) override;
-    std::optional<DbValue> loadSetting(const std::string & key) const override;
+    bool executeQuery(const std::string &sql, const std::vector<DbValue> &params = {}) override;
+    SelectResult fetchQuery(const std::string &sql, const std::vector<DbValue> &params = {}) override;
     bool isInitialized() const override;
 
 private:
     QString databasePath() const;
-    bool createTablesIfNotExists();
-
-    // Вспомогательные методы для конвертации
-    QString dbValueToString(const DbValue & value) const;
-    std::optional<DbValue> stringToDbValue(const QString & str, const QString & type) const;
+    void bindParameters(QSqlQuery &query, const std::vector<DbValue> &params);
+    DbValue variantToDbValue(const QVariant &var) const;
 };
 
 #endif // DATABASEMANAGERQTSQLITE_H

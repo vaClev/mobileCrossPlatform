@@ -65,6 +65,7 @@ qt_add_qml_module(applesson0
       Source/Database/IDatabaseManager.h
       Source/Database/Impl/DatabaseManagerQtSqlite.h
       Source/Database/Impl/DatabaseManagerQtSqlite.cpp
+      SOURCES Source/Database/settingsdb.h Source/Database/settingsdb.cpp
 )
 
 #Добавление ресурсов - иконки

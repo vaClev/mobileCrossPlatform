@@ -2,8 +2,8 @@
 #include <QLocale>
 #include <QStringList>
 
-SettingsStore::SettingsStore(std::shared_ptr<IDatabaseManager> db)
-    : m_db(std::move(db))
+SettingsStore::SettingsStore(std::unique_ptr<SettingsDB> settingsDb)
+    : m_settingsDB{std::move(settingsDb)}
 {
     ensureDefaultSettings();
 }
@@ -12,11 +12,14 @@ SettingsStore::SettingsStore(std::shared_ptr<IDatabaseManager> db)
 /// В другие запуски - загрузка текущих настроек из БД
 void SettingsStore::ensureDefaultSettings()
 {
-    if(!initDBConnection())
+    if(!m_settingsDB)
+        return;
+
+    if(!m_settingsDB->lazyOpenConnection())
         return;
 
     // Тема
-    auto themeSetting = m_db->loadSetting("darkTheme");
+    auto themeSetting = m_settingsDB->loadSetting("darkTheme");
     if (!themeSetting.has_value()) //в БД еще нет такой настройки
     {
         setDarkTheme(true); // по умолчанию темная
@@ -29,7 +32,7 @@ void SettingsStore::ensureDefaultSettings()
 
 
     // Язык по умолчанию определяется по системной локали устройства
-    auto langSetting = m_db->loadSetting("language");
+    auto langSetting = m_settingsDB->loadSetting("language");
     if (!langSetting.has_value()) //в БД еще нет такой настройки
     {
         std::string defaultLang = "en"; // резервное значение
@@ -48,17 +51,8 @@ void SettingsStore::ensureDefaultSettings()
     {
         m_language = std::get<std::string>(*langSetting);
     }
-}
 
-bool SettingsStore::initDBConnection() const
-{
-    if(!m_db)
-        return false;
-
-    if(m_db->isInitialized())
-        return true;
-
-    return m_db->initialize();
+    //TODO можно и закрыть после соединение.
 }
 
 
@@ -87,8 +81,8 @@ void SettingsStore::setDarkTheme(bool dark)
     return;
 
   m_isDarkTheme = dark;
-  if(m_db)
-    m_db->saveSetting("darkTheme", dark);
+  if(m_settingsDB)
+    m_settingsDB->saveSetting("darkTheme", dark);
 }
 
 
@@ -104,6 +98,6 @@ void SettingsStore::setLanguage(const std::string &lang)
         return;
 
   m_language = lang;
-  if(m_db)
-    m_db->saveSetting("language", lang);
+  if(m_settingsDB)
+    m_settingsDB->saveSetting("language", lang);
 }

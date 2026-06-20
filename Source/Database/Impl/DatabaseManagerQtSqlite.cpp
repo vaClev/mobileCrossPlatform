@@ -1,21 +1,27 @@
 #include "DatabaseManagerQtSqlite.h"
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QSqlQuery>
+#include <QSqlRecord>
 #include <QStandardPaths>
 #include <QDir>
+#include <QMutexLocker>
 
 DatabaseManagerQtSqlite::DatabaseManagerQtSqlite(const std::string & databaseName)
     : m_databaseName(QString::fromStdString(databaseName))
 {
 }
 
-DatabaseManagerQtSqlite::~DatabaseManagerQtSqlite() = default;
+DatabaseManagerQtSqlite::~DatabaseManagerQtSqlite()
+{
+    DatabaseManagerQtSqlite::closeConnection();
+}
 
 /// IDatabaseManager
 /// /////////////////////////////////////
 bool DatabaseManagerQtSqlite::initialize()
 {
+    QMutexLocker locker(&m_mutex);
+
     if (m_initialized)
         return true;
 
@@ -37,15 +43,11 @@ bool DatabaseManagerQtSqlite::initialize()
         return false;
     }
 
-    if (!createTablesIfNotExists()) {
-        qWarning() << "Failed to create tables";
-        return false;
-    }
-
     m_initialized = true;
     qDebug() << "Database initialized at:" << databasePath();
     return true;
 }
+
 
 /// Путь к файлу базы данных. Расположение файла .db
 QString DatabaseManagerQtSqlite::databasePath() const
@@ -58,31 +60,12 @@ QString DatabaseManagerQtSqlite::databasePath() const
     return dir.filePath(m_databaseName);
 }
 
-/// Создание таблиц
-bool DatabaseManagerQtSqlite::createTablesIfNotExists()
-{
-    QSqlQuery query;
-
-    // Таблица для настроек settings
-    bool ok = query.exec(
-        "CREATE TABLE IF NOT EXISTS settings ("
-        "  key   TEXT PRIMARY KEY,"
-        "  value TEXT,"
-        "  type  TEXT DEFAULT 'string'"
-        ")"
-        );
-    if (!ok) {
-        qWarning() << "Failed to create settings table:" << query.lastError().text();
-        return false;
-    }
-
-    return true;
-}
-
 
 /// Закрыть соединение с БД - !!подключать к сигналу закрытия приложения!!
 void DatabaseManagerQtSqlite::closeConnection()
 {
+    QMutexLocker locker(&m_mutex);
+
     if(!m_initialized)
         return;
 
@@ -94,111 +77,92 @@ void DatabaseManagerQtSqlite::closeConnection()
 }
 
 
-/// Сохранение настройки в базу данных
-bool DatabaseManagerQtSqlite::saveSetting(const std::string & key, const DbValue & value)
+bool DatabaseManagerQtSqlite::executeQuery(const std::string &sql, const std::vector<DbValue> &params)
 {
-  if (!m_initialized)
-    return false;
+    QMutexLocker locker(&m_mutex);
 
-  QSqlQuery query;
-  query.prepare(
-      "INSERT OR REPLACE INTO settings (key, value, type) "
-      "VALUES (:key, :value, :type)"
-      );
-
-  query.bindValue(":key", QString::fromStdString(key));
-  query.bindValue(":value", dbValueToString(value));
-
-  /// TODO выести в функцию getType
-  QString type;
-  if (std::holds_alternative<bool>(value)) type = "bool";
-  else if (std::holds_alternative<int>(value)) type = "int";
-  else if (std::holds_alternative<double>(value)) type = "double";
-  else if (std::holds_alternative<std::string>(value)) type = "string";
-  query.bindValue(":type", type);
-
-  /// Выполняем запрос
-  if (!query.exec()) {
-      qWarning() << "Failed to save setting:" << query.lastError().text();
-      return false;
-  }
-  return true;
-}
-
-/// Конвертировать из DbValue в строку
-QString DatabaseManagerQtSqlite::dbValueToString(const DbValue &value) const
-{
-    if (std::holds_alternative<bool>(value)) {
-        return std::get<bool>(value) ? "true" : "false";
+    if (!m_initialized) {
+        qWarning() << "Database not initialized";
+        return false;
     }
-    else if (std::holds_alternative<int>(value)) {
-        return QString::number(std::get<int>(value));
-    }
-    else if (std::holds_alternative<double>(value)) {
-        return QString::number(std::get<double>(value));
-    }
-    else if (std::holds_alternative<std::string>(value)) {
-        return QString::fromStdString(std::get<std::string>(value));
-    }
-    return QString();
-}
-
-///Чтение настройки из базы данных
-std::optional<IDatabaseManager::DbValue> DatabaseManagerQtSqlite::loadSetting(const std::string & key) const
-{
-    if (!m_initialized)
-      return std::nullopt;
 
     QSqlQuery query;
-    query.prepare("SELECT value, type FROM settings WHERE key = :key");
-    query.bindValue(":key", QString::fromStdString(key));
+    query.prepare(QString::fromStdString(sql));
+    bindParameters(query, params);
 
-    if (query.exec() && query.next())
-    {
-      QString value = query.value(0).toString();
-      QString type = query.value(1).toString();
-
-      return stringToDbValue(value, type);
+    if (!query.exec()) {
+        qWarning() << "Query failed:" << query.lastError().text()
+        << "\nSQL:" << QString::fromStdString(sql);
+        return false;
     }
-
-    return std::nullopt;
+    return true;
 }
 
-/// Конвертировать вычитанные настройки в DbValue
-std::optional<IDatabaseManager::DbValue> DatabaseManagerQtSqlite::stringToDbValue(
-    const QString & str, const QString & type) const
+
+void DatabaseManagerQtSqlite::bindParameters(QSqlQuery &query, const std::vector<DbValue> &params)
 {
-    if (type == QStringLiteral("bool")) {
-        // Булево значение: true или false (регистронезависимо)
-        return str.compare(QStringLiteral("true"), Qt::CaseInsensitive) == 0;
+    for (size_t i = 0; i < params.size(); ++i) {
+        const auto &param = params[i];
+        if (std::holds_alternative<bool>(param))
+            query.bindValue(i, std::get<bool>(param));
+        else if (std::holds_alternative<int>(param))
+            query.bindValue(i, std::get<int>(param));
+        else if (std::holds_alternative<double>(param))
+            query.bindValue(i, std::get<double>(param));
+        else if (std::holds_alternative<std::string>(param))
+            query.bindValue(i, QString::fromStdString(std::get<std::string>(param)));
     }
-    else if (type == QStringLiteral("int")) {
-        bool ok = false;
-        int v = str.toInt(&ok);
-        if (ok) return v;
+}
 
-        qWarning() << "Failed to convert" << str << "to int";
+
+IDatabaseManager::SelectResult DatabaseManagerQtSqlite::fetchQuery(const std::string &sql, const std::vector<DbValue> &params)
+{
+    QMutexLocker locker(&m_mutex);
+
+    if (!m_initialized) {
+        qWarning() << "Database not initialized";
         return std::nullopt;
     }
-    else if (type == QStringLiteral("double")) {
-        bool ok = false;
-        double v = str.toDouble(&ok);
-        if (ok) return v;
 
-        qWarning() << "Failed to convert" << str << "to double";
+    QSqlQuery query;
+    query.prepare(QString::fromStdString(sql));
+    bindParameters(query, params);
+
+    if (!query.exec()) {
+        qWarning() << "Query failed:" << query.lastError().text();
         return std::nullopt;
     }
-    else if (type == QStringLiteral("string"))
-    {
-        return str.toStdString();
-    }
 
-    qWarning() << "Unknown type" << type << "for value" << str;
-    return std::nullopt;
+    std::vector<std::vector<DbValue>> rows;
+    while (query.next()) {
+        std::vector<DbValue> row;
+        for (int i = 0; i < query.record().count(); ++i) {
+            row.push_back(variantToDbValue(query.value(i)));
+        }
+        rows.push_back(row);
+    }
+    return rows;
+}
+
+
+DbValue DatabaseManagerQtSqlite::variantToDbValue(const QVariant &var) const
+{
+    switch (var.typeId()) {
+    case QMetaType::Bool:
+        return var.toBool();
+    case QMetaType::Int:
+    case QMetaType::LongLong:
+        return var.toInt();
+    case QMetaType::Double:
+        return var.toDouble();
+    default:
+        return var.toString().toStdString();
+    }
 }
 
 /// Вернуть статус инициализации
 bool DatabaseManagerQtSqlite::isInitialized() const
 {
+  QMutexLocker locker(&m_mutex);
   return m_initialized;
 }

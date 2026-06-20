@@ -3,14 +3,15 @@
 
 #include <string>
 #include <variant>
+#include <vector>
 #include <optional>
+
+// Типы значений, которые может хранить БД таблица настроек
+using DbValue = std::variant<bool, int, double, std::string>;
 
 struct IDatabaseManager
 {
 public:
-    // Типы значений, которые может хранить БД таблица настроек
-    using DbValue = std::variant<bool, int, double, std::string>;
-
     virtual ~IDatabaseManager() = default;
 
     // Инициализация БД
@@ -19,15 +20,13 @@ public:
     // Закрыть соединение
     virtual void closeConnection() = 0;
 
-    /////////////////////////////////
-    /// Работа с таблицей Settings - настройки приложеия
-    /////////////////////////////////
-    // Сохранение настройки
-    virtual bool saveSetting(const std::string &key, const DbValue &value) = 0;
+    // Выполнить запрос без возврата данных (INSERT, UPDATE, DELETE, CREATE)
+    virtual bool executeQuery(const std::string &sql,
+                              const std::vector<DbValue> &params = {}) = 0;
 
-    // Загрузка настройки (возвращает std::nullopt, если ключ не найден)
-    virtual std::optional<DbValue> loadSetting(const std::string &key) const = 0;
-    /////////////////////////////////
+    using SelectResult = std::optional<std::vector<std::vector<DbValue>>>;
+    // Выполнить запрос с возвратом данных (SELECT)
+    virtual SelectResult fetchQuery(const std::string &sql, const std::vector<DbValue> &params = {}) = 0;
 
     // Проверка инициализации
     virtual bool isInitialized() const = 0;

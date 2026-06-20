@@ -2,18 +2,18 @@
 #ifndef SETTINGSSTORE_H
 #define SETTINGSSTORE_H
 
-#include <memory>
 #include <string>
-#include "Source/Database/IDatabaseManager.h"
+#include <memory>
+#include "Source/Database/settingsdb.h"
 
 class SettingsStore
 {
-    mutable std::shared_ptr<IDatabaseManager> m_db;
+    std::unique_ptr<SettingsDB> m_settingsDB;
     bool m_isDarkTheme;
     std::string m_language;
 
 public:
-    explicit SettingsStore(std::shared_ptr<IDatabaseManager> db);
+    explicit SettingsStore(std::unique_ptr<SettingsDB> settingsDb);
 
     // Тема
     bool darkTheme() const;
@@ -24,7 +24,7 @@ public:
     void setLanguage(const std::string &lang);
 private:
     void ensureDefaultSettings();
-    bool initDBConnection() const;
+    bool initDBConnection();
 };
 
 #endif // SETTINGSSTORE_H
