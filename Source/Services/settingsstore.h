@@ -22,11 +22,9 @@ public:
     // Язык (например, "ru", "en")
     std::string language() const;
     void setLanguage(const std::string &lang);
-
-    void closeSettings();
 private:
     void ensureDefaultSettings();
-    bool lazyInitConnection() const;
+    bool initDBConnection() const;
 };
 
 #endif // SETTINGSSTORE_H

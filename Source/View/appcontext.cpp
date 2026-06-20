@@ -3,9 +3,9 @@
 #include "Source/languagemanager.h"
 
 //Конструктор
-AppContext::AppContext(std::shared_ptr<SettingsStore> settingsStore,
-                       LanguageManager *languageManager,
-                       QObject *parent)
+AppContext::AppContext(std::unique_ptr<SettingsStore> settingsStore,
+                       LanguageManager * languageManager,
+                       QObject * parent)
     : QObject(parent)
     , m_settings(std::move(settingsStore))
     , m_languageManager(languageManager)
@@ -102,10 +102,4 @@ void AppContext::setLanguage(const QString &lang)
     m_settings->setLanguage(lang.toStdString());
 
   emit languageChanged();
-}
-
-void AppContext::closeSettings()
-{
-  if (m_settings)
-    m_settings->closeSettings();
 }

@@ -4,8 +4,8 @@
 
 #include <QObject>
 #include <QString>
+#include "Source/Services/settingsstore.h"
 
-class SettingsStore;
 class LanguageManager;
 
 class AppContext : public QObject
@@ -17,11 +17,11 @@ class AppContext : public QObject
 
 private:
     bool m_isAuthenticated = false;
-    std::shared_ptr<SettingsStore> m_settings;
+    std::unique_ptr<SettingsStore> m_settings = nullptr;
     LanguageManager * m_languageManager = nullptr;
 
 public:
-    AppContext(std::shared_ptr<SettingsStore> settingsStore,
+    AppContext(std::unique_ptr<SettingsStore> settingsStore,
                LanguageManager * languageManager = nullptr,
                QObject *parent = nullptr);
 
@@ -42,9 +42,6 @@ public:
     QString language() const;
     /// Установить язык
     Q_INVOKABLE void setLanguage(const QString &lang);
-
-    /// Закрыть БД настроек
-    Q_INVOKABLE void closeSettings();
 signals:
     /// Сигнал об изменении статуса аутентификации
     void authenticationStateChanged();

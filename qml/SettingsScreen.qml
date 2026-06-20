@@ -7,9 +7,6 @@ import lesson0
 PageWithBackButton {
     title: qsTr("Settings")
 
-    // При уходе с экрана (назад, переход) закрываем соединение
-    Component.onDestruction: AppContext.closeSettings()
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 20

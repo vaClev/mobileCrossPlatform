@@ -12,7 +12,7 @@ SettingsStore::SettingsStore(std::shared_ptr<IDatabaseManager> db)
 /// В другие запуски - загрузка текущих настроек из БД
 void SettingsStore::ensureDefaultSettings()
 {
-    if(!lazyInitConnection())
+    if(!initDBConnection())
         return;
 
     // Тема
@@ -48,16 +48,9 @@ void SettingsStore::ensureDefaultSettings()
     {
         m_language = std::get<std::string>(*langSetting);
     }
-
-    /// На старте приложения загружаем настройки из БД - кешируем в переменные
-    /// ==> затем закрываем соединение.
-    closeSettings();
-    /// Если пользователь перейдет на экран SettingsScreen и будет менять настройки
-    /// => тогда соединение вновь откроем.
-    /// Но пользователь не каждый сеанс работы с приложением заходит на SettingsScreen
 }
 
-bool SettingsStore::lazyInitConnection() const
+bool SettingsStore::initDBConnection() const
 {
     if(!m_db)
         return false;
@@ -94,7 +87,7 @@ void SettingsStore::setDarkTheme(bool dark)
     return;
 
   m_isDarkTheme = dark;
-  if(lazyInitConnection())
+  if(m_db)
     m_db->saveSetting("darkTheme", dark);
 }
 
@@ -107,14 +100,10 @@ std::string SettingsStore::language() const
 
 void SettingsStore::setLanguage(const std::string &lang)
 {
+  if(m_language==lang)
+        return;
+
   m_language = lang;
-  if(lazyInitConnection())
-    m_db->saveSetting("language", lang);
-}
-
-
-void SettingsStore::closeSettings()
-{
   if(m_db)
-    m_db->closeConnection();
+    m_db->saveSetting("language", lang);
 }

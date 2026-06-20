@@ -3,7 +3,6 @@
 #define NAVIGATIONMANAGER_H
 
 #include <QObject>
-class AppContext;
 class QQmlApplicationEngine;
 
 class NavigationManager : public QObject
@@ -23,8 +22,8 @@ public:
     /// Свернуть приложение Android / ios - заглушка
     Q_INVOKABLE void minimizeApp();
 
-private:
-    void shutdownApp();
+    /// Закрыть приложение
+    Q_INVOKABLE void shutdownApp();
 signals:
     void navigationRequested(const QString &screenId);
     void backRequested();

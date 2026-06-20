@@ -100,5 +100,20 @@ Drawer {
                 root.menuItemSelected("logout")
             }
         }
+        Button {
+            text: qsTr("Close Application")
+            flat: true
+            contentItem: Text {
+                text: parent.text
+                color: "#ff6b6b"
+                font.pixelSize: 16
+                horizontalAlignment: Text.AlignLeft
+            }
+            Layout.fillWidth: true
+            onClicked: {
+                root.close()
+                NavManager.shutdownApp()
+            }
+        }
     }
 }

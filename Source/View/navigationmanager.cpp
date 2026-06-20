@@ -1,6 +1,7 @@
 #include "navigationmanager.h"
 #include <QQmlApplicationEngine>
 #include <QGuiApplication>
+#include <QWindow>
 
 #ifdef Q_OS_ANDROID
 #include <QJniObject>
@@ -62,7 +63,16 @@ void NavigationManager::minimizeApp()
 void NavigationManager::shutdownApp()
 {
     if (m_engine) {
+        // Останавливаем сцену
         m_engine->clearComponentCache();
+
+        // Принудительно закрываем все окна, чтобы остановить рендеринг
+        const auto windows = QGuiApplication::allWindows();
+        for (auto * window : windows) {
+            window->close();
+        }
+
+        // Даём Qt обработать закрытие окон
         qApp->processEvents();
     }
     qApp->quit();

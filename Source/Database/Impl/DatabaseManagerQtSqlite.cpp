@@ -10,13 +10,7 @@ DatabaseManagerQtSqlite::DatabaseManagerQtSqlite(const std::string & databaseNam
 {
 }
 
-DatabaseManagerQtSqlite::~DatabaseManagerQtSqlite()
-{
-    //if (QSqlDatabase::contains("qt_sql_default_connection")) {
-    //    QSqlDatabase::database().close();
-    //    QSqlDatabase::removeDatabase("qt_sql_default_connection");
-    //}
-}
+DatabaseManagerQtSqlite::~DatabaseManagerQtSqlite() = default;
 
 /// IDatabaseManager
 /// /////////////////////////////////////
@@ -85,17 +79,20 @@ bool DatabaseManagerQtSqlite::createTablesIfNotExists()
     return true;
 }
 
-/// Закрыть соединение с БД
+
+/// Закрыть соединение с БД - !!подключать к сигналу закрытия приложения!!
 void DatabaseManagerQtSqlite::closeConnection()
 {
-    /*if(!m_initialized)
+    if(!m_initialized)
         return;
 
     if (QSqlDatabase::contains("qt_sql_default_connection")) {
         QSqlDatabase::database().close();
+        QSqlDatabase::removeDatabase("qt_sql_default_connection");
     }
-    m_initialized = false;*/
+    m_initialized = false;
 }
+
 
 /// Сохранение настройки в базу данных
 bool DatabaseManagerQtSqlite::saveSetting(const std::string & key, const DbValue & value)
