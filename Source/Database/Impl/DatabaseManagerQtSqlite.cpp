@@ -12,10 +12,10 @@ DatabaseManagerQtSqlite::DatabaseManagerQtSqlite(const std::string & databaseNam
 
 DatabaseManagerQtSqlite::~DatabaseManagerQtSqlite()
 {
-    if (QSqlDatabase::contains("qt_sql_default_connection")) {
-        QSqlDatabase::database().close();
-        QSqlDatabase::removeDatabase("qt_sql_default_connection");
-    }
+    //if (QSqlDatabase::contains("qt_sql_default_connection")) {
+    //    QSqlDatabase::database().close();
+    //    QSqlDatabase::removeDatabase("qt_sql_default_connection");
+    //}
 }
 
 /// IDatabaseManager
@@ -25,8 +25,18 @@ bool DatabaseManagerQtSqlite::initialize()
     if (m_initialized)
         return true;
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE"); //TODO ("QSQLITE", "main_connection")
-    db.setDatabaseName(databasePath());
+    QSqlDatabase db;
+    if (QSqlDatabase::contains("qt_sql_default_connection"))
+    {
+        // Соединение уже существует (после закрытия) – берём его
+        db = QSqlDatabase::database();
+    }
+    else
+    {
+        // Первый запуск – создаём новое соединение
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(databasePath());
+    }
 
     if (!db.open()) {
         qWarning() << "Failed to open database:" << db.lastError().text();
@@ -75,6 +85,17 @@ bool DatabaseManagerQtSqlite::createTablesIfNotExists()
     return true;
 }
 
+/// Закрыть соединение с БД
+void DatabaseManagerQtSqlite::closeConnection()
+{
+    /*if(!m_initialized)
+        return;
+
+    if (QSqlDatabase::contains("qt_sql_default_connection")) {
+        QSqlDatabase::database().close();
+    }
+    m_initialized = false;*/
+}
 
 /// Сохранение настройки в базу данных
 bool DatabaseManagerQtSqlite::saveSetting(const std::string & key, const DbValue & value)

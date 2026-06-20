@@ -17,7 +17,6 @@ class AppContext : public QObject
 
 private:
     bool m_isAuthenticated = false;
-    bool m_isDarkTheme = true;   // цветовая тема интерфейса: темная = true, светлая = false.
     std::shared_ptr<SettingsStore> m_settings;
     LanguageManager * m_languageManager = nullptr;
 
@@ -43,6 +42,9 @@ public:
     QString language() const;
     /// Установить язык
     Q_INVOKABLE void setLanguage(const QString &lang);
+
+    /// Закрыть БД настроек
+    Q_INVOKABLE void closeSettings();
 signals:
     /// Сигнал об изменении статуса аутентификации
     void authenticationStateChanged();

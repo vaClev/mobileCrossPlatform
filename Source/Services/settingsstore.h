@@ -8,6 +8,10 @@
 
 class SettingsStore
 {
+    mutable std::shared_ptr<IDatabaseManager> m_db;
+    bool m_isDarkTheme;
+    std::string m_language;
+
 public:
     explicit SettingsStore(std::shared_ptr<IDatabaseManager> db);
 
@@ -19,11 +23,10 @@ public:
     std::string language() const;
     void setLanguage(const std::string &lang);
 
-private:
-    std::shared_ptr<IDatabaseManager> m_db;
-
+    void closeSettings();
 private:
     void ensureDefaultSettings();
+    bool lazyInitConnection() const;
 };
 
 #endif // SETTINGSSTORE_H

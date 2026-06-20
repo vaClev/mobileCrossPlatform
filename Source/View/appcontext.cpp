@@ -13,12 +13,10 @@ AppContext::AppContext(std::shared_ptr<SettingsStore> settingsStore,
     loadSettings();
 }
 
-///загрузка сохраненных настроек
+///загрузка сохраненных настроек из БД
 void AppContext::loadSettings()
 {
     if (!m_settings) return;
-
-    m_isDarkTheme = m_settings->darkTheme();
 
     if(m_languageManager)
     {
@@ -53,22 +51,32 @@ void AppContext::logout()
     emit authenticationStateChanged();
 }
 
-// Методы работы с сотоянием темы интерфейса
-////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/// Методы работы с настройками приложения
+///
+/// Настройки хранятся в БД, кашируются в переменные хранилища.
+/// m_languageManager->currentLanguage() - язык выдаем текущий из языкового менеджера.
+///
+/// Общий подход:
+/// SET:
+///  При изменении настроек пользователем новые значения сразу пишутся в БД
+/// GET:
+///  При завпросе от UI элементов текущих настроек в БД не лазием.
+///  выдаем текущие закешированные из SettingsStore и m_languageManager
+////////////////////////////////////////////////////////////////////////
 bool AppContext::isDarkTheme() const
 {
-    return m_isDarkTheme;
+    if (m_settings)
+        return m_settings->darkTheme();
+
+    return true;
 }
 
 
 void AppContext::setDarkTheme(bool dark)
 {
-    if(m_isDarkTheme == dark)
-        return;
-
     if (m_settings) {
         m_settings->setDarkTheme(dark);
-        m_isDarkTheme = dark;
         emit darkThemeChanged();
     }
 }
@@ -94,4 +102,10 @@ void AppContext::setLanguage(const QString &lang)
     m_settings->setLanguage(lang.toStdString());
 
   emit languageChanged();
+}
+
+void AppContext::closeSettings()
+{
+  if (m_settings)
+    m_settings->closeSettings();
 }

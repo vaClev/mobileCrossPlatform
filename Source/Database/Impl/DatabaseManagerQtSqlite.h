@@ -15,6 +15,7 @@ public:
 
 public:/// IDatabaseManager
     bool initialize() override;
+    void closeConnection() override;
     bool saveSetting(const std::string & key, const DbValue & value) override;
     std::optional<DbValue> loadSetting(const std::string & key) const override;
     bool isInitialized() const override;

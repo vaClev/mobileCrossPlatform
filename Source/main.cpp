@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
 
     //Создаем контроллер базы данных SqLite
     auto db = std::make_shared<DatabaseManagerQtSqlite>();
-    db->initialize();
     // создаем сервис сохранения настроек
     auto settingsStore = std::make_shared<SettingsStore>(db);
 
@@ -40,6 +39,10 @@ int main(int argc, char *argv[])
 
     if (engine.rootObjects().isEmpty())
         return -1;
+
+    QObject::connect(&app, &QCoreApplication::aboutToQuit, [db]() {
+        db->closeConnection(); // Закрытие при выходе через quit()
+    });
 
     int ret = app.exec();
     engine.clearComponentCache();
